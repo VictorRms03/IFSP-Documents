@@ -1,0 +1,1 @@
+Lista de Exercícios encontrada no final do PDF "Slides - Apresentação da Disciplina e Introdução"

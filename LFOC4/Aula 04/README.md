@@ -1,0 +1,1 @@
+Lista de Exercícios encontrada no final do PDF "Slides - Linguagens Regulares e Autômatos Finitos Não-Determinísticos com Épsilon-Transições"

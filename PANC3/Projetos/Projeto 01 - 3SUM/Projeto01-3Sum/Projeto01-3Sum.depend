@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1681171672 source:c:\users\bv120133\downloads\projeto01-3sum\main.c
+	<stdio.h>
+	<stdlib.h>
+	"threesum.h"
+
+1681171758 c:\users\bv120133\downloads\projeto01-3sum\threesum.h
+
+1681171646 source:c:\users\bv120133\downloads\projeto01-3sum\threesum.c
+	<stdio.h>
+	<stdlib.h>
+	"threesum.h"
+
+1682980573 source:c:\users\victo\desktop\ifsp\semestre 3\panc3 -\projeto01-3summodeloaluno\main.c
+	<stdio.h>
+	<stdlib.h>
+	"threesum.h"
+
+1681171844 c:\users\victo\desktop\ifsp\semestre 3\panc3 -\projeto01-3summodeloaluno\threesum.h
+
+1682980534 source:c:\users\victo\desktop\ifsp\semestre 3\panc3 -\projeto01-3summodeloaluno\threesum.c
+	<stdio.h>
+	<stdlib.h>
+	"threesum.h"
+
+1683063991 source:d:\ifsp\semestre 3\panc3\projeto - 3sum\projeto01-3summodeloaluno\main.c
+	<stdio.h>
+	<stdlib.h>
+	"threesum.h"
+
+1681171844 d:\ifsp\semestre 3\panc3\projeto - 3sum\projeto01-3summodeloaluno\threesum.h
+
+1683068657 source:d:\ifsp\semestre 3\panc3\projeto - 3sum\projeto01-3summodeloaluno\threesum.c
+	<stdio.h>
+	<stdlib.h>
+	"threesum.h"
+

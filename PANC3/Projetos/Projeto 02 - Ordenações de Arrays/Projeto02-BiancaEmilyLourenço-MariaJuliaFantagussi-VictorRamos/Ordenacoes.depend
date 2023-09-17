@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1647370552 source:c:\users\blromano\desktop\ordenacoes\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1647983296 source:d:\google drive\aulas-breno\ifsp\acadêmico\disciplinas\panc (superior - bcc)\aulas-projetos-sala-aula\projeto 02 - complementação ordenação\projetado em casa\ordenacoes\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1654538214 source:g:\meu drive\aulas-breno\ifsp\acadêmico\disciplinas\panc (superior - bcc)\aulas-projetos-sala-aula\projeto 04 - estrutura de projeto ordenação\ordenacoes\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"ordenacao.h"
+
+1652723474 g:\meu drive\aulas-breno\ifsp\acadêmico\disciplinas\panc (superior - bcc)\aulas-projetos-sala-aula\projeto 04 - estrutura de projeto ordenação\ordenacoes\ordenacao.h
+
+1652723643 source:g:\meu drive\aulas-breno\ifsp\acadêmico\disciplinas\panc (superior - bcc)\aulas-projetos-sala-aula\projeto 04 - estrutura de projeto ordenação\ordenacoes\ordenacao.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"ordenacao.h"
+
+1652723643 source:g:\meu drive\aulas-breno\ifsp\acadêmico\disciplinas\panc (superior - bcc)\projetos\2023\02-projeto02-ordenações\projetoresolvido\ordenacao.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"ordenacao.h"
+
+1652723474 g:\meu drive\aulas-breno\ifsp\acadêmico\disciplinas\panc (superior - bcc)\projetos\2023\02-projeto02-ordenações\projetoresolvido\ordenacao.h
+
+1687628685 source:c:\users\victo\desktop\projeto02-biancaemilylourenço-mariajuliafantagussi-victorramos\ordenacao.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"ordenacao.h"
+
+1687628501 c:\users\victo\desktop\projeto02-biancaemilylourenço-mariajuliafantagussi-victorramos\ordenacao.h
+
+1687628781 source:c:\users\victo\desktop\projeto02-biancaemilylourenço-mariajuliafantagussi-victorramos\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"ordenacao.h"
+
+1687670021 source:d:\ifsp\semestre 3\panc3\projeto 02 - ordenações de arrays\projeto02-biancaemilylourenço-mariajuliafantagussi-victorramos\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"ordenacao.h"
+
+1687669975 d:\ifsp\semestre 3\panc3\projeto 02 - ordenações de arrays\projeto02-biancaemilylourenço-mariajuliafantagussi-victorramos\ordenacao.h
+
+1687718161 source:d:\ifsp\semestre 3\panc3\projeto 02 - ordenações de arrays\projeto02-biancaemilylourenço-mariajuliafantagussi-victorramos\ordenacao.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"ordenacao.h"
+
