@@ -8,7 +8,7 @@ public class Calculos {
     private int qualEixo = 1;
     private int qualCalculo = 1;
     private String unidadeResultado;
-    
+
     // Construtor Padrão
     public Calculos(){}
     
