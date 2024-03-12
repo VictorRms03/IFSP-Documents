@@ -21,7 +21,7 @@
  * Constants. 
  -------------------------------------------*/
 #define SquareSize 7
-#define SquareDrawSize 50
+#define SquareDrawSize 40
 
 /*--------------------------------------------
  * Functions prototypes. 
@@ -31,11 +31,12 @@ bool isLineCandidate(char letter, int line);
 bool isColumnCandidate(char letter, int column);
 int generateLinearPositions ( void );
 bool isSolved( void );
+void copyToOriginalArray ( void );
 
 /*--------------------------------------------
  * Global variables. 
  -------------------------------------------*/
-char latinSquare[SquareSize][SquareSize] = {
+char originalLatinSquare[SquareSize][SquareSize] = {
     { '1', ' ', ' ', ' ', ' ', ' ', ' ' },
     { ' ', '2', ' ', ' ', ' ', ' ', ' ' },
     { ' ', ' ', '3', ' ', ' ', ' ', ' ' },
@@ -44,12 +45,10 @@ char latinSquare[SquareSize][SquareSize] = {
     { ' ', ' ', ' ', ' ', ' ', '6', ' ' },
     { ' ', ' ', ' ', ' ', ' ', ' ', '7' },
 };
-
+char latinSquare[SquareSize][SquareSize];
 char symbols[SquareSize] = { '1', '2', '3', '4', '5', '6', '7'};
-
 int *linearPositions;
 int blankSlots = 0;
-
 bool hasSolution;
 
 /*--------------------------------------------
@@ -85,16 +84,23 @@ void drawGameWorld( GameWorld *gw ) {
     //Desenho do Quadrado Latino
     for(int i=0; i<SquareSize; i++){
         for(int j=0; j<SquareSize; j++){
+
+            Color c = BLACK;
+
+            if(latinSquare[i][j] == originalLatinSquare[i][j]){
+                c = RED;
+            }
+
             DrawRectangleLines(100 + SquareDrawSize*i, 20 + SquareDrawSize*j, SquareDrawSize, SquareDrawSize, BLACK);
-            DrawText( TextFormat("%c", latinSquare[i][j]), (113 + SquareDrawSize*i), (28 + SquareDrawSize*j), 40, BLACK );
+            DrawText( TextFormat("%c", latinSquare[i][j]), (113 + SquareDrawSize*i), (28 + SquareDrawSize*j), 30, c );
         }
     }
 
     //Escreve se o Quadrado Latino foi resolvido ou não
     if( hasSolution ){
-        DrawText( " Resolvido! ", ((SquareDrawSize * (SquareSize-1)/2) ), (30 + (SquareDrawSize * SquareSize) + SquareSize), 50, GREEN );
+        DrawText( " Resolvido! ", ((SquareDrawSize * (SquareSize-1)/2) ), (30 + (SquareDrawSize * SquareSize) + SquareSize), 40, GREEN );
     } else {
-        DrawText( "Sem Solução!", ((SquareDrawSize * (SquareSize-1)/2) ), (30 + (SquareDrawSize * SquareSize) + SquareSize), 50, RED );
+        DrawText( "Sem Solução!", ((SquareDrawSize * (SquareSize-1)/2) ), (30 + (SquareDrawSize * SquareSize) + SquareSize), 40, RED );
     }
 
     EndDrawing();
@@ -102,7 +108,7 @@ void drawGameWorld( GameWorld *gw ) {
 }
 
 bool solve( int linearPosition ){
-    
+
     //a posição linear deve ser processada?
     if(linearPosition < blankSlots) { 
 
@@ -175,6 +181,7 @@ bool isColumnCandidate(char letter, int column){
 
 int generateLinearPositions ( void ) {
 
+    copyToOriginalArray();
     
     //Determina o tamanho que o array 'linearPositions' deve ter (pois não há lista em C)
     int size=0;
@@ -217,4 +224,12 @@ bool isSolved( void ) {
     }
 
     return true;
+}
+
+void copyToOriginalArray ( void ) {
+    for(int i=0; i<SquareSize; i++){
+        for(int j=0; j<SquareSize; j++){
+            latinSquare[i][j] = originalLatinSquare[i][j];
+        }
+    }
 }
