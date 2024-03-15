@@ -1,3 +1,10 @@
+/*
+* PARA INSERIR UM QUADRADO DIFERENTE, É NECESSÁRIO MUDAR AS SEGUINTES INFORMAÇÕES:
+* - #define SquareSize (linha 30)
+* - char originalLatinSquare[SquareSize][SquareSize] (linha 46)
+* - char symbols[SquareSize] (linha 56)
+*/
+
 /**
  * @file GameWorld.h
  * @author Prof. Dr. David Buzatto
