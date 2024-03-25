@@ -10,6 +10,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
+ * GRUPO: 
+ * Bianca Emily Lourenço - BV3024997
+ * João Luiz Caieiro Borges Maravelli - BV3024903
+ * Victor Ramos - BV3026191
+ */
+
+/**
  * Executa a análise léxica da linguagem de programação CPRL.
  * 
  * Versão 0, ponto de partida.
@@ -400,10 +407,12 @@ public class Scanner {
         
         clearScanBuffer();
         
+        char c = (char) source.getChar();
         do {
-            scanBuffer.append( (char) source.getChar() );
+            scanBuffer.append( c );
             source.advance();
-        } while( Character.isDigit( (char) source.getChar() ) || Character.isLetter( (char) source.getChar()));
+            c = (char) source.getChar();
+        } while( Character.isDigit( c ) || Character.isLetter( c) );
         
         // esta linha deve ser alterada para retornar a string do identificador
         return scanBuffer.toString();
@@ -428,11 +437,7 @@ public class Scanner {
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
         
-        if (symbolMap.containsKey( idString )){
-            return symbolMap.get( idString );
-        } else {
-            return Symbol.identifier;
-        }
+        return symbolMap.containsKey( idString ) ? symbolMap.get( idString ) : Symbol.identifier;
         
         // </editor-fold>
         
@@ -486,12 +491,12 @@ public class Scanner {
             }
                 
             source.advance();
-            c = (char) source.getChar();
             checkGraphicChar(c);
+            c = (char) source.getChar();
         }
         
-        c = (char) source.getChar();
         checkGraphicChar(c);
+        c = (char) source.getChar();
         
         if(c == '\"') {
             scanBuffer.append( c );
