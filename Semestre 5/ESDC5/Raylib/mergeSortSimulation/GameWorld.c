@@ -36,6 +36,7 @@ void merge( int *array, int start, int middle, int end);
  -------------------------------------------*/
 int array[arraySize];
 int originalArray[arraySize];
+int steps = 0;
 
 /*--------------------------------------------
  * Functions. 
@@ -72,9 +73,11 @@ void drawGameWorld( GameWorld *gw ) {
     }
 
     for(int i=0; i<arraySize; i++){
-        DrawRectangleLines(10 + (SquareSize*i), 50, SquareSize, SquareSize, BLACK);
-        DrawText( TextFormat("%d", array[i]), (15 + (SquareSize*i)), 50, 30, BLACK);
+        DrawRectangleLines(( GetScreenWidth()/4 - SquareSize*(arraySize/2) ) + ( SquareSize*i ), SquareSize+20, SquareSize, SquareSize, BLACK);
+        DrawText( TextFormat("%d", array[i]), ( 5 + ( GetScreenWidth()/4 - SquareSize*(arraySize/2) ) + ( SquareSize*i ) ), SquareSize+25, 30, BLACK);
     }
+
+    DrawText( TextFormat("%d", steps), 200,  200, 50, BLACK);
     
 
     EndDrawing();
@@ -94,6 +97,7 @@ void generateArray ( int *array){
 void mergeSort( int *array, int start, int end ){
 
     if(start<end){
+        steps++;
         int middle = ((start + end) / 2);
         mergeSort(array, start, middle);
         mergeSort(array, middle+1, end);
