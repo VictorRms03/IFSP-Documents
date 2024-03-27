@@ -1,66 +1,121 @@
 header{
     height: 200px;
-}
 
-header h1, h2{
-    font-weight: normal;
-    margin-left: 220px;
-}
+    h1, h2{
+        font-weight: normal;
+        margin-left: 220px;
+    }
 
-header h1{
-    margin-top: 40px;
-}
+    h1{
+        margin-top: 40px;
 
-header h2{
-    margin-top: -10px;
-}
+        span{
+            color: green;
+        }
+    }
 
-.logo{
-    float: left;
-    margin-top: -35px;
-}
+    h2{
+        margin-top: -10px;
+    }
 
-nav{
-    margin-top: 80px;
-    margin-left: 50px;
+    img{
+        float: left;
+        margin-top: -35px;
+    }
 
-    a{
-        margin-left: 20px;
-        font-size: 15px;
+    nav{
+        margin-top: 60px;
+        margin-left: 50px;
+    
+        a{
+            margin-left: 20px;
+            font-size: 15px;
+        }
+    
+        span{
+            float: right;
+            margin-right: 15px;
+        }
     }
 }
 
 main{
-    margin-top: 0px;
-    width: 750px;
-    color: green;
+    display: flex;
+    flex: row;
+    justify-content: space-between;
 
-    h3{
-        background-color: green;
-        color: black;
-        font-size: 22px;
-        font-weight: 1000px;
+    section{
+        width: 75%;
+        color: green;
+    
+        h2, h3{
+            text-align: center;
+            font-weight: bold;
+            margin-left: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h3{
+            background-color: green;
+            color: black;
+            font-size: 22px;
+            font-weight: 1000px;
+        }
+
+        h2{
+            font-size: 28px;
+            font-weight: 800;
+        }
+    
+        p{
+            margin-left: 5px;
+        }
+    
+        img{
+            margin-left: 80px;
+            margin-top: 30px;
+        }
     }
 
-    h2, h3{
-        text-align: center;
-        font-weight: bold;
-        margin-left: 0px;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+    .right-bar{
 
-    h2{
-        font-size: 28px;
-        font-weight: 800;
-    }
+        margin-right: 50px;
 
-    p{
-        margin-left: 5px;
+        ul li{
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+    
     }
 }
 
-.right-bar ul li{
-    list-style-type: none;
-    margin: -10px 80px 30px 0px;
+footer{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
 
+    h5{
+        margin: 0px 0px 0px 0px;
+        font-weight: normal;
+    }
+
+    h4{
+        font-weight: normal;
+    }
+
+    div{
+        margin: 0px 120px 0px 30px;
+    }
+
+    ul li{
+        list-style-type: none;
+        margin-bottom: 20px;
+    }
+}
+
+a:visited{
+    color: black;
 }
