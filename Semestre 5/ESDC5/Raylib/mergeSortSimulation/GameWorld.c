@@ -16,49 +16,55 @@
 
 #include "GameWorld.h"
 #include "ResourceManager.h"
+#include "SortingAlgorithms.h"
 
-/*--------------------------------------------
-* Constants. 
--------------------------------------------*/
-#define SquareSize 40
-#define arraySize 10
+#define ARRAY_SIZE 30
+#define TIME_TO_WAIT 0.05
 
-/*--------------------------------------------
-* Functions prototypes. 
--------------------------------------------*/
-void generateArray ( int *array);
-void mergeSort( int *array, int start, int end );
-void merge( int *array, int start, int middle, int end);
-
-
-/*--------------------------------------------
- * Global variables. 
- -------------------------------------------*/
-int array[arraySize];
-int originalArray[arraySize];
-int steps = 0;
-
-/*--------------------------------------------
- * Functions. 
- -------------------------------------------*/
 GameWorld* createGameWorld( void ) {
 
     GameWorld *gw = (GameWorld*) malloc( sizeof( GameWorld ) );
+    *gw = (GameWorld){0};
 
-    gw->dummy = 0;
+    gw->size = ARRAY_SIZE;
+    gw->array = (int*) malloc( sizeof(int) * gw->size );
+    gw->timeToWait = TIME_TO_WAIT;
 
-    generateArray(array);
-    mergeSort(array, 0, arraySize-1);
+    populateArray( gw->array, gw->size );
+    shuffeArray( gw->array, gw->size );
+    createAndAddNewArrayCopy( gw, 0, ( 0 + ARRAY_SIZE-1 ) / 2, ARRAY_SIZE-1);
+    gw->currentCopy = gw->copiesHead;
+    
+    mergeSort( gw );
 
     return gw;
 
 }
 
 void destroyGameWorld( GameWorld *gw ) {
+
+    ArrayCopy* current = gw->copiesHead;
+    while ( current != NULL ) {
+        ArrayCopy* previous = current->previous;
+        destroyArrayCopy( current );
+        current = previous;
+    }
+
+    free( gw->array );
     free( gw );
+
 }
 
 void inputAndUpdateGameWorld( GameWorld *gw ) {
+
+    gw->timeAcum += GetFrameTime();
+
+    if ( gw->timeAcum >= gw->timeToWait ) {
+        gw->timeAcum = 0;
+        if ( gw->currentCopy != NULL && gw->currentCopy->previous != NULL ) {
+            gw->currentCopy = gw->currentCopy->previous;
+        }
+    }
 
 }
 
@@ -67,70 +73,62 @@ void drawGameWorld( GameWorld *gw ) {
     BeginDrawing();
     ClearBackground( WHITE );
 
-    for(int i=0; i<arraySize; i++){
-        DrawRectangleLines( ( GetScreenWidth()/2 - SquareSize*(arraySize/2) ) + ( SquareSize*i ), 10, SquareSize, SquareSize, BLACK );
-        DrawText( TextFormat("%d", originalArray[i]), ( 5 + ( GetScreenWidth()/2 - SquareSize*(arraySize/2) ) + ( SquareSize*i ) ), 15, 30, BLACK);
-    }
+    if ( gw->currentCopy != NULL ) {
 
-    for(int i=0; i<arraySize; i++){
-        DrawRectangleLines(( GetScreenWidth()/4 - SquareSize*(arraySize/2) ) + ( SquareSize*i ), SquareSize+20, SquareSize, SquareSize, BLACK);
-        DrawText( TextFormat("%d", array[i]), ( 5 + ( GetScreenWidth()/4 - SquareSize*(arraySize/2) ) + ( SquareSize*i ) ), SquareSize+25, 30, BLACK);
-    }
+        int margin = 20;
+        int unitHeight = ( GetScreenHeight() - margin * 2 ) / gw->size;
+        int valueWidth = ( GetScreenWidth() - margin * 2 ) / gw->size;
+        int valueSpacing = 0;
+        int startY = GetScreenHeight() - margin;
 
-    DrawText( TextFormat("%d", steps), 200,  200, 50, BLACK);
-    
+        int* array = gw->currentCopy->data;
+
+        for ( size_t i = 0; i < gw->size; i++ ) {
+            int valueHeight = unitHeight * array[i];
+
+            Color rectangleColor = BLUE;
+
+            if( isLeftPosition( i, gw->currentCopy ) ){ rectangleColor = RED; }
+            else if ( isRightPosition( i, gw->currentCopy ) ) { rectangleColor = BLACK; }
+            else if ( isMiddlePosition( i, gw->currentCopy ) ) { rectangleColor = ORANGE; };
+
+            DrawRectangle( 
+                margin + ( valueWidth + valueSpacing ) * i,
+                startY - valueHeight,
+                valueWidth, 
+                valueHeight,
+                rectangleColor
+            );
+        }
+
+    }
 
     EndDrawing();
 
 }
 
-void generateArray ( int *array){
-
-    for(int i=0; i<arraySize; i++){
-        int randNumber = GetRandomValue(0, 10);
-        originalArray[i] = randNumber;
-        array[i] = randNumber;
-    }
-    
+bool isLeftPosition( int position, ArrayCopy* array  ){
+    return position == array->leftPosition ? true : false;
 }
 
-void mergeSort( int *array, int start, int end ){
-
-    if(start<end){
-        steps++;
-        int middle = ((start + end) / 2);
-        mergeSort(array, start, middle);
-        mergeSort(array, middle+1, end);
-        merge(array, start, middle, end);
-    }
+bool isMiddlePosition( int position, ArrayCopy* array  ){
+    return position == array->middlePosition ? true : false;
 }
 
+bool isRightPosition( int position, ArrayCopy* array  ){
+    return position == array->rightPosition ? true : false;
+}
 
+void createAndAddNewArrayCopy( GameWorld* gw, int firstPosition, int middlePosition, int rightPosition ) {
 
-void merge( int *array, int start, int middle, int end){
-    int *auxArray;
-    auxArray = (int*) malloc ((end+1) * sizeof(int));
+    ArrayCopy* copy = createArrayCopy( gw, firstPosition, middlePosition, rightPosition );
 
-    for(int i=start; i<=middle; i++){
-        auxArray[i] = array[i];
+    if ( gw->copiesHead == NULL && gw->copiesTail == NULL ) {
+        gw->copiesHead = copy;
+        gw->copiesTail = copy;
+    } else {
+        gw->copiesTail->previous = copy;
+        gw->copiesTail = copy;
     }
 
-    for(int i=middle+1; i<=end; i++){
-        auxArray[end+middle+1-i] = array[i];
-    }
-
-    int i=start;
-    int j=end;
-
-    for(int k=start; k<=end; k++){
-        if(auxArray[i] <= auxArray[j]){
-            array[k] = auxArray[i];
-            i++;
-        } else {
-            array[k] = auxArray[j];
-            j--;
-        }
-    }
-
-    free(auxArray);
 }

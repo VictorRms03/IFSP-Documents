@@ -36,7 +36,7 @@ void GameWorld::inputAndUpdate() {
 /**
  * @brief Draws the state of the game.
  */
-void GameWorld::draw() const {
+void GameWorld::draw() {
 
     BeginDrawing();
     ClearBackground( WHITE );
@@ -59,9 +59,7 @@ void GameWorld::draw() const {
  * Should be called inside the constructor.
  */
 void GameWorld::loadResources() {
-    ResourceManager::loadTextures();
-    ResourceManager::loadSounds();
-    ResourceManager::loadMusics();
+    ResourceManager::loadResources();
 }
 
 /**
@@ -69,7 +67,5 @@ void GameWorld::loadResources() {
  * Should be called inside the destructor.
  */
 void GameWorld::unloadResources() {
-    ResourceManager::unloadTextures();
-    ResourceManager::unloadSounds();
-    ResourceManager::unloadMusics();
+    ResourceManager::unloadResources();
 }

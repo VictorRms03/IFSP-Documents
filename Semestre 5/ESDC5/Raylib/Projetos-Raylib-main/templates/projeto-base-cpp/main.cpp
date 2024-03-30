@@ -8,9 +8,22 @@
  */
 #include "GameWindow.h"
 
-int main( void ) {
+int main() {
 
-    GameWindow gameWindow( 800, 450, "Window Title", false );
+    GameWindow gameWindow( 
+        800,             // width
+        450,             // height
+        "Window Title",  // title
+        60,              // target FPS
+        true,            // antialiazing
+        false,           // resizable
+        false,           // full screen
+        false,           // undecorated
+        false,           // always on top
+        false,           // always run
+        false            // init audio
+    );
+    
     gameWindow.init();
 
     return 0;

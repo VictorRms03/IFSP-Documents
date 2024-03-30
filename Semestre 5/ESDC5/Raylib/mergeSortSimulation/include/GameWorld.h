@@ -7,8 +7,23 @@
  */
 #pragma once
 
+#include "ArrayCopy.h"
+#include <stdbool.h>
+
 typedef struct GameWorld {
-    int dummy;
+    
+    int* array;
+    size_t size;
+
+    // new array copies are appended to the tail
+    // the data structure grows from head to tail
+    ArrayCopy* copiesTail;     // list tail
+    ArrayCopy* copiesHead;     // list head
+    ArrayCopy* currentCopy;    // copy to render
+
+    float timeAcum;
+    float timeToWait;
+
 } GameWorld;
 
 /**
@@ -30,3 +45,21 @@ void inputAndUpdateGameWorld( GameWorld *gw );
  * @brief Draws the state of the game.
  */
 void drawGameWorld( GameWorld *gw );
+
+/**
+ * @brief Indicates if the position is the left position of the array 
+ */
+bool isLeftPosition( int position, ArrayCopy* array  ); //
+
+/**
+ * @brief Indicates if the position is the middle position of the array 
+ */
+bool isMiddlePosition( int position, ArrayCopy* array  ); //
+
+/**
+ * @brief Indicates if the position is the right position of the array 
+ */
+
+bool isRightPosition( int position, ArrayCopy* array  ); //
+
+void createAndAddNewArrayCopy( GameWorld* gw, int firstPosition, int middlePosition, int rightPosition );
