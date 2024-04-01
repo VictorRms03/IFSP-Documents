@@ -1,0 +1,41 @@
+%fatos
+homem(joao).
+homem(paulo).
+homem(luis).
+homem(pedro).
+
+mulher(sofia).
+mulher(ana).
+mulher(carla).
+mulher(maria).
+
+mae(sofia, joao).
+mae(ana, maria).
+mae(carla, sofia).
+
+pai(paulo, luis).
+pai(paulo, sofia).
+pai(luis, pedro).
+pai(luis, maria).
+
+%regras
+progenitor(A,B) :- pai(A,B).
+progenitor(A,B) :- mae(A,B).
+
+casados(X,Y) :- pai(X,Z) , mae(Y,Z) ; pai(Y,Z) , mae(X,Z).
+filho(X,Y) :- (pai(Y,X) ; mae(Y,X)) , homem(X).
+filha(X,Y) :- (pai(Y,X) ; mae(Y,X)) , mulher(X).
+irma(X,Y) :- (pai(Z,X) , pai(Z,Y) ; mae(Z,X) , mae(Z,Y)) , mulher(X).
+irmao(X,Y) :- (pai(Z,X) , pai(Z,Y) ; mae(Z,X) , mae(Z,Y)) , homem(X).
+avo(X,Y) :- pai(X,Z) , (pai(Z,Y) ; mae(Z,Y)).
+avó(X,Y) :- mae(X,Z) , (pai(Z,Y) ; mae(Z,Y)).
+tio(X,Y) :- (irmao(X,Z)) , (pai(Z,Y) ; mae(Z,Y)).
+tia(X,Y) :- (irma(X,Z)) , (pai(Z,Y) ; mae(Z,Y)).
+cunhado(X,Y) :- irmao(X,Z) , casados(Z,Y).
+cunhada(X,Y) :- irma(X,Z) , casados(Z,Y).
+nora(X,Y) :- casados(X,Z) , (pai(Y,Z) ; mae(Y,Z)) , mulher(X).
+genro(X,Y) :- casados(X,Z) , (pai(Y,Z) ; mae(Y,Z)) , homem(X).
+primo(X,Y) :- (tio(Z,X) ; tia(Z,X)) , (filho(Y,Z) ; filha(Y,Z)) , homem(X).
+prima(X,Y) :- (tio(Z,Y) ; tia(Z,Y)) , (filho(X,Z) ; filha(X,Z)) , mulher(X).
+bisneto(X,Y) :- (avo(Z,X) ; avó(Z,X)) , (pai(Y,Z) ; mae(Y,Z)) , homem(X).
+bisneta(X,Y) :- (avo(Z,X) ; avó(Z,X)) , (pai(Y,Z) ; mae(Y,Z)) , mulher(X).
