@@ -89,7 +89,7 @@ void drawGameWorld( GameWorld *gw ) {
             Color rectangleColor = BLUE;
 
             if( isLeftPosition( i, gw->currentCopy ) ){ rectangleColor = RED; }
-            else if ( isRightPosition( i, gw->currentCopy ) ) { rectangleColor = BLACK; }
+            else if ( isRightPosition( i, gw->currentCopy ) ) { rectangleColor = GREEN; }
             else if ( isMiddlePosition( i, gw->currentCopy ) ) { rectangleColor = ORANGE; };
 
             DrawRectangle( 
