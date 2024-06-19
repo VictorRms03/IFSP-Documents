@@ -875,15 +875,80 @@ public abstract class FirstFollowSets {
         });
         
         FOLLOW_SETS.put( "paramId", new Symbol[]{ 
+            Symbol.assign,
+            Symbol.semicolon,
+            Symbol.intLiteral,
+            Symbol.charLiteral,
+            Symbol.stringLiteral,
+            Symbol.trueRW,
+            Symbol.falseRW,
+            Symbol.equals,
+            Symbol.leftBracket,
+            Symbol.rightBracket,
+            Symbol.colon,
+            Symbol.identifier,
+            Symbol.comma,
+            Symbol.leftParen,
+            Symbol.rightParen,
+            Symbol.thenRW,
+            Symbol.loopRW,
+            Symbol.andRW,
+            Symbol.orRW,
+            Symbol.notEqual,
+            Symbol.lessThan,
+            Symbol.lessOrEqual,
+            Symbol.greaterThan,
+            Symbol.greaterOrEqual,
+            Symbol.plus,
+            Symbol.minus,
+            Symbol.times,
+            Symbol.divide,
+            Symbol.modRW,
+            Symbol.notRW
         });
 
         FOLLOW_SETS.put( "typeId", new Symbol[]{ 
+            Symbol.semicolon,
+            Symbol.equals,
+            Symbol.comma,
+            Symbol.isRW,
+            Symbol.rightParen
         });
 
         FOLLOW_SETS.put( "procId", new Symbol[]{ 
+            Symbol.semicolon,
+            Symbol.isRW
         });
 
         FOLLOW_SETS.put( "funcId", new Symbol[]{ 
+            Symbol.semicolon,
+            Symbol.intLiteral,
+            Symbol.charLiteral,
+            Symbol.stringLiteral,
+            Symbol.trueRW,
+            Symbol.falseRW,
+            Symbol.equals,
+            Symbol.rightBracket,
+            Symbol.identifier,
+            Symbol.comma,
+            Symbol.returnRW,
+            Symbol.leftParen,
+            Symbol.rightParen,
+            Symbol.thenRW,
+            Symbol.loopRW,
+            Symbol.andRW,
+            Symbol.orRW,
+            Symbol.notEqual,
+            Symbol.lessThan,
+            Symbol.lessOrEqual,
+            Symbol.greaterThan,
+            Symbol.greaterOrEqual,
+            Symbol.plus,
+            Symbol.minus,
+            Symbol.times,
+            Symbol.divide,
+            Symbol.modRW,
+            Symbol.notRW
         });
         
         // </editor-fold>
@@ -891,3 +956,31 @@ public abstract class FirstFollowSets {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
