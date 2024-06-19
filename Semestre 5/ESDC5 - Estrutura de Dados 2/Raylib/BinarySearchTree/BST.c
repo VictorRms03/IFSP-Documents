@@ -91,10 +91,10 @@ void routeDraw( BSTNode *node ) {
         DrawText( TextFormat("%d", node->key) , margin + 50*node->rank - 10, margin + 50*node->level - 10, 20, BLACK);
 
         if( node->right != NULL ){
-            DrawLine( (margin + 50*node->rank) + 15,  (margin + 50*node->level) + 15, margin + 50*(node->right->rank), margin + 50*(node->right->level) - 20, BLACK);
+            DrawLine( margin + 50*node->rank + 17,  margin + 50*node->level + 12, margin + 50*node->right->rank, margin + 50*(node->right->level) - 20, BLACK);
         }
         if( node->left != NULL ){
-            DrawLine( (margin + 50*node->rank) - 15,  (margin + 50*node->level) + 15, margin + 50*(node->left->rank), margin + 50*(node->left->level) - 20, BLACK);
+            DrawLine( margin + 50*node->rank - 17,  margin + 50*node->level + 12, margin + 50*node->left->rank, margin + 50*(node->left->level) - 20, BLACK);
         }
 
         routeDraw( node->left );

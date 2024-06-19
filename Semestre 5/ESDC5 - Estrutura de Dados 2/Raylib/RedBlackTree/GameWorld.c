@@ -27,17 +27,17 @@ GameWorld* createGameWorld( void ) {
     gw->arvore = newRBT();
 
     // exemplo 1
-    rbtPut( gw->arvore, 20 );
-    rbtPut( gw->arvore, 10 );
-    rbtPut( gw->arvore, 5 );
-    rbtPut( gw->arvore, 15 );
-    rbtPut( gw->arvore, 30 );
-    rbtPut( gw->arvore, 25 );
-    rbtPut( gw->arvore, 35 );
+    rbtPut( gw->arvore, 19 ); // S
+    rbtPut( gw->arvore, 5 ); // E
+    rbtPut( gw->arvore, 1 ); // A
+    rbtPut( gw->arvore, 18 ); // R
+    rbtPut( gw->arvore, 3 ); // C
+    rbtPut( gw->arvore, 8 ); // H
+    rbtPut( gw->arvore, 24 ); // X
 
     // exemplo 2
-    /*for ( int i = 0; i < 7; i++ ) {
-        bstPut( gw->arvore, i );
+    /*for ( int i = 0; i < 6; i++ ) {
+        rbtPut( gw->arvore, i );
     }*/
 
     int currentRank = 0;
@@ -76,7 +76,6 @@ void drawGameWorld( GameWorld *gw ) {
 
     rbtDraw(gw->arvore);
 
-    
     EndDrawing();
 
 }

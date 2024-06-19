@@ -146,11 +146,45 @@ void rbtProcess( RBTNode* node, int* currentRank, int level, int *redNodeCount, 
 }
 
 void rbtDraw( RBT *rbt ) {
-    // desenhe a árvore vermelho e preto aqui
+    rbtDrawPath(rbt->root);
+}
+
+void rbtDrawPath( RBTNode *node ) {
+
+    if ( node != NULL ) {
+        
+        DrawCircleLines( 100 + node->rank*50 , 100 + node->blackLevel*50 , 20 , BLACK );
+        DrawText( TextFormat("%d", node->key) , 100 + node->rank*50 - 10, 100 + node->blackLevel*50 - 10, 20, BLACK );
+        
+        if( node->left != NULL ) {
+
+            DrawLine( 100 + node->rank*50 + (node->left->color == RBT_COLOR_RED ? -20 : -17), 
+                100 + node->blackLevel*50 + (node->left->color == RBT_COLOR_RED ? 0 : 12),
+                100 + node->left->rank*50 + (node->left->color == RBT_COLOR_RED ? 20 : 0),
+                100 + node->left->blackLevel*50 + (node->left->color == RBT_COLOR_RED ? 0 : -20),
+                node->left->color == RBT_COLOR_RED ? RED : BLACK );
+
+            rbtDrawPath( node->left );
+
+        }
+
+        if( node->right != NULL ) {
+
+            DrawLine( 100 + node->rank*50 + (node->right->color == RBT_COLOR_RED ? 20 : 17),
+                100 + node->blackLevel*50 + (node->right->color == RBT_COLOR_RED ? 0 : 12),
+                100 + node->right->rank*50 + (node->right->color == RBT_COLOR_RED ? -20 : 0),
+                100 + node->right->blackLevel*50 + (node->right->color == RBT_COLOR_RED ? 0 : -20),
+                node->right->color == RBT_COLOR_RED ? RED : BLACK );
+
+            rbtDrawPath( node->right );
+
+        }
+    }
+
 }
 
 void rbtPrintNode( RBTNode *node ) {
-    printf( "%d %c (%d/%d) ", 
+    printf( "%d %c (%d/%d) //", 
             node->key, 
             node->color == RBT_COLOR_RED ? 'R' : 'B',
             node->rank, 

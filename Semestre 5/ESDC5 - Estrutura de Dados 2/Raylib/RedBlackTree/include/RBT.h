@@ -37,5 +37,6 @@ void rbtPostOrder( RBTNode* node );
 
 void rbtProcess( RBTNode* node, int* currentRank, int level, int* redNodeCount, int *maxBlackLevel );
 void rbtDraw( RBT *rbt );
+void rbtDrawPath( RBTNode* node );
 
 void rbtPrintNode( RBTNode *node );
