@@ -9,6 +9,7 @@ Baixe a base de dados de QI por país e investigue:
 QI - arquivo CSV:<br>
 **https://worldpopulationreview.com/country-rankings/average-iq-by-country**
 """
+import pandas as pd
 
 #EX1
 
