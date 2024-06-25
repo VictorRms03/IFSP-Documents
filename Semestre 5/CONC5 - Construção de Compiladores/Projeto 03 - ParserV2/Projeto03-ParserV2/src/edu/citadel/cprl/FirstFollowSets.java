@@ -7,9 +7,7 @@ package edu.citadel.cprl;
 
 import java.util.HashMap;
 import java.util.Map;
-/**
- * GRUPO: 
- */
+
 /**
  * Centraliza os conjuntos First e Follow para os não-terminais da gramática
  * da linguagem CPRL.
