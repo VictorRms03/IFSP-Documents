@@ -1,0 +1,13 @@
+#df_BLI = pd.read_csv('countries - BLI.csv', sep = ',');
+df_IQ = pd.read_csv('countries - IQ.csv', sep = ',');
+df_GDP = pd.read_csv('countries - GDP.csv', sep = ',');
+
+df_GDP = df_GDP[['Country ', '2018']].dropna()
+
+df_IQ = df_IQ[['country', 'averageIqByCountry_iqLynnBecker2019']].dropna()
+
+df_IQ.sort_values('country', ascending=True, inplace=True)
+
+df = df_IQ.set_index('country').join(df_GDP.set_index('Country '), how = 'inner')
+
+# TRANSFORMANDO DADOS #
