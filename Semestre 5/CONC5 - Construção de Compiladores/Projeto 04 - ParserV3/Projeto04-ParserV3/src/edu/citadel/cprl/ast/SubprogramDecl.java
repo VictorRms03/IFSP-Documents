@@ -10,6 +10,8 @@ import java.util.ListIterator;
 /**
  * Base class for CPRL procedures and functions.
  */
+
+/* PRONTO? - NÃO FIZ NADA */
 public abstract class SubprogramDecl extends Declaration {
 
     private List<ParameterDecl> formalParams;

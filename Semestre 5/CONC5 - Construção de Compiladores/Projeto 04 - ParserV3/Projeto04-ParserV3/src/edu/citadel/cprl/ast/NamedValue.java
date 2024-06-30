@@ -11,6 +11,8 @@ import test.cprl.gui.visitor.Visitor;
  * leave its address on the top of the stack, while code generation for "y"
  * would leave its value on the top of the stack.
  */
+
+/* PRONTO? - NÃO FIZ NADA */
 public class NamedValue extends Variable {
 
     /**
@@ -18,6 +20,8 @@ public class NamedValue extends Variable {
      */
     public NamedValue( Variable var ) {
         super( var.getDecl(), var.getPosition(), var.getIndexExprs() );
+        
+        //super.setType(var.getType()); Variable.java faz isso
     }
 
     @Override

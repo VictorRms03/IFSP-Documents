@@ -9,11 +9,12 @@ import edu.citadel.cprl.Type;
  * Base class for all CPRL declarations (constants, variables, procedures,
  * etc.).
  */
+
+/* PRONTO? - NÃO FIZ NADA */
 public abstract class Declaration extends AST {
 
     private Token idToken;
     private Type type;
-
     /**
      * Construct a declaration with its identifier token and type.
      */

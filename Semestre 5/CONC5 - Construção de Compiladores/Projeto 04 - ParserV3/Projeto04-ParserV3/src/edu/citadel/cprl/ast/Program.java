@@ -6,6 +6,8 @@ import test.cprl.gui.visitor.Visitor;
 /**
  * The abstract syntax tree node for a CPRL program.
  */
+
+/* PRONTO? - NÃO FIZ NADA, talvez eu deva fazer algo com o varLength??? */
 public class Program extends AST {
 
     private DeclarativePart declPart;

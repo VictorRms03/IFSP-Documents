@@ -8,6 +8,8 @@ import java.util.List;
 /**
  * Base class with common code for write and writeln statements.
  */
+
+/* PRONTO? - NÃO FIZ NADA */
 public abstract class OutputStmt extends Statement {
 
     private List<Expression> expressions;

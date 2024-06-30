@@ -12,6 +12,8 @@ import test.cprl.gui.visitor.Visitor;
 /**
  * The abstract syntax tree node for a function call expression.
  */
+
+/* PRONTO? - NÃO FIZ NADA */
 public class FunctionCall extends Expression {
 
     private Token funcId;
@@ -22,6 +24,7 @@ public class FunctionCall extends Expression {
      * Construct a function call with the function identifier (name), the list
      * of actual parameters, and a reference to the function declaration.
      */
+    
     public FunctionCall( Token funcId,
             List<Expression> actualParams,
             FunctionDecl funcDecl ) {

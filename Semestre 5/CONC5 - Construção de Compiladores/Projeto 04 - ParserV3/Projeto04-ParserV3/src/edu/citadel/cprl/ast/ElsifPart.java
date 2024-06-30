@@ -11,6 +11,8 @@ import test.cprl.gui.visitor.Visitor;
 /**
  * The AST for an elsif part of an if statement.
  */
+
+/* NÃO SEI COMO PEGAR O endIfLabel */
 public class ElsifPart extends AST {
 
     private Expression booleanExpr;
@@ -32,7 +34,7 @@ public class ElsifPart extends AST {
         
         this.booleanExpr = booleanExpr;
         this.thenStmts = thenStmts;
-
+        endIfLabel = getNewLabel(); /* PROVAVELMENTE ISSO TÁ ERRADO */
         L1 = getNewLabel();
         
     }

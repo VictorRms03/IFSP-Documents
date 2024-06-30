@@ -11,6 +11,8 @@ import test.cprl.gui.visitor.Visitor;
 /**
  * The abstract syntax tree node for an if statement.
  */
+
+/* PRONTO? - NÃO FIZ NADA */
 public class IfStmt extends Statement {
 
     private Expression booleanExpr;

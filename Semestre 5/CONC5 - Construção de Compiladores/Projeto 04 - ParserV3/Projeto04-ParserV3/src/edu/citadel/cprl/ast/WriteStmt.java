@@ -6,6 +6,7 @@ import test.cprl.gui.visitor.Visitor;
 /**
  * The abstract syntax tree node for a write statement.
  */
+/* PRONTO? - NÃO FIZ NADA */
 public class WriteStmt extends OutputStmt {
 
     /**

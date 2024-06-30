@@ -13,6 +13,8 @@ import test.cprl.gui.visitor.Visitor;
  * is a binary expression where the operator is either "and" or "or". A simple
  * example would be "(x &gt; 5) and (y &lt; 0)".
  */
+
+/* PRONTO? - NÃO FIZ NADA */
 public class LogicalExpr extends BinaryExpr {
 
     // labels used during code generation for short-circuit version

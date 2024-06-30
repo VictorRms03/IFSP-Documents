@@ -7,6 +7,8 @@ import edu.citadel.cprl.Type;
 /**
  * Base class for all CPRL expressions.
  */
+
+/* PRONTO? - NÃO FIZ NADA */
 public abstract class Expression extends AST {
 
     /**

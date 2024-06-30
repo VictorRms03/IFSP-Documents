@@ -12,6 +12,8 @@ import test.cprl.gui.visitor.Visitor;
  * The abstract syntax tree node for a constant value expression, which is
  * either a literal or a declared constant identifier representing a literal.
  */
+
+/* PRONTO? - NÃO FIZ NADA*/
 public class ConstValue extends Expression {
 
     /**
