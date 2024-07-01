@@ -7,8 +7,6 @@ import edu.citadel.cprl.Type;
  * Interface for a named declaration, which can be either a "single" variable
  * declaration or a parameter declaration.
  */
-
-/* PRONTO? - NÃO FIZ NADA */
 public interface NamedDecl {
 
     /**

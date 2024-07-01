@@ -7,8 +7,6 @@ import edu.citadel.cprl.Type;
 /**
  * Base class for all initial declarations.
  */
-
-/* PRONTO? - NÃO FIZ NADA */
 public abstract class InitialDecl extends Declaration {
 
     /**

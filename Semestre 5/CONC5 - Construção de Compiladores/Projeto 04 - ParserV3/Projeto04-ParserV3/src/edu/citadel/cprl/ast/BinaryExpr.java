@@ -1,7 +1,6 @@
 package edu.citadel.cprl.ast;
 
 import edu.citadel.cprl.Token;
-import edu.citadel.cprl.Type;
 
 /**
  * Base class for all binary expressions. A binary expression is an expression
@@ -18,7 +17,6 @@ public abstract class BinaryExpr extends Expression {
      * Construct a binary expression with its left operand, operator, and right
      * operand.
      */
-    
     public BinaryExpr( Expression leftOperand, Token operator, Expression rightOperand ) {
         
         super( operator.getPosition() );

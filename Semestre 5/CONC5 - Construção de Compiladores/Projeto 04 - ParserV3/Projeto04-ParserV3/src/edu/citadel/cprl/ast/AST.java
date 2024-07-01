@@ -11,9 +11,6 @@ import test.cprl.gui.visitor.Element;
 /**
  * Classe base para todas as classes da árvore sinática abstrata.
  */
-
-/*NÃO SEI OQ TEM Q FAZER*/
-
 public abstract class AST implements Element {
     
     // número de espaços que serão impressos antes do opcode

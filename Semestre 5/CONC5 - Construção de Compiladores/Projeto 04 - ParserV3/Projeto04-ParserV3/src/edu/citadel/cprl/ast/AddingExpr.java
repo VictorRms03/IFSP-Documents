@@ -13,8 +13,6 @@ import test.cprl.gui.visitor.Visitor;
  * is a binary expression where the operator is an adding operator, "+" or "-".
  * A simple example would be "x + 5".
  */
-
-/*PRONTO? - NÃO FIZ NADA*/
 public class AddingExpr extends BinaryExpr {
 
     /**

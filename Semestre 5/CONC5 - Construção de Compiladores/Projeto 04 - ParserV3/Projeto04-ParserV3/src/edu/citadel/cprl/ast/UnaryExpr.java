@@ -1,15 +1,12 @@
 package edu.citadel.cprl.ast;
 
 import edu.citadel.cprl.Token;
-import edu.citadel.cprl.Type;
 
 /**
  * Base class for all unary expressions. A unary expression is an expression of
  * the form "operator expression". The expression following the operator is
  * called the operand. A simple example would be "-x".
  */
-
-/* PRONTO? - NÃO FIZ NADA - Talvez colocar "super.setType(Type.Integer);" no construtor? */
 public abstract class UnaryExpr extends Expression {
 
     private Token operator;

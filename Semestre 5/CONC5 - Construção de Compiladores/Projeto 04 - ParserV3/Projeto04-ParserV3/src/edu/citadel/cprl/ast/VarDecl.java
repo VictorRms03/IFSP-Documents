@@ -13,8 +13,6 @@ import test.cprl.gui.visitor.Visitor;
  * variable declaration is simply a container for a list of single variable
  * declarations (SingleVarDecls).
  */
-
-/* PRONTO? - NÃO FIZ NADA */
 public class VarDecl extends InitialDecl {
 
     // the list of SingleVarDecls for the variable declaration

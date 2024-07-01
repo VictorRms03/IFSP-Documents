@@ -12,8 +12,6 @@ import test.cprl.gui.visitor.Visitor;
  * Note: A variable declaration where more than one variable is declared
  * is simply a container for multiple single variable declarations.
  */
-
-/* PRONTO? - NÃO FIZ NADA - deveria fazer algo com o relAddr?? */
 public class SingleVarDecl extends InitialDecl implements NamedDecl {
 
     private ScopeLevel scopeLevel;
@@ -25,7 +23,6 @@ public class SingleVarDecl extends InitialDecl implements NamedDecl {
     public SingleVarDecl( Token identifier, Type varType, ScopeLevel scopeLevel ) {
         super( identifier, varType );
         this.scopeLevel = scopeLevel;
-        //this.relAddr = ?
     }
 
     /**
