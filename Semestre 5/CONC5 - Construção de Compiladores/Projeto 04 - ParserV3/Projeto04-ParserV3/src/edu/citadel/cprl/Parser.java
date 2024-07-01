@@ -751,7 +751,7 @@ public class Parser {
      * Analisa a regra gramatical abaixo:
      * 
      * parameterDecl = ( "var" )? paramId ":" typeName .
-     * PRONTO? (PERGUNTAR SE A AUSENCIA DO "var" INDICA QUE O ParameterDecl TEM Q TER 'false' NO "ParameterDecl parameterDecl = new ParameterDecl(paramId, typeName, true);"
+     * PRONTO
      */
     public ParameterDecl parseParameterDecl() throws IOException {
         
@@ -780,7 +780,10 @@ public class Parser {
                     
         try {            
             
+            boolean isVar = false;
+            
             if ( scanner.getSymbol() == Symbol.varRW ) {
+                isVar = true;
                 matchCurrentSymbol();
             }
             
@@ -792,8 +795,8 @@ public class Parser {
             
             Type typeName = parseTypeName();
             
-            ParameterDecl parameterDecl = new ParameterDecl(paramId, typeName, true);
-            idTable.add(parameterDecl);
+            ParameterDecl parameterDecl = new ParameterDecl( paramId, typeName, isVar );
+            idTable.add( parameterDecl );
             return parameterDecl;
             
         } catch ( ParserException e ) {
@@ -869,7 +872,7 @@ public class Parser {
      * 
      * statement = assignmentStmt | ifStmt | loopStmt | exitStmt | readStmt
      *           | writeStmt | writelnStmt | procedureCallStmt | returnStmt .
-     * PRONTO???? (DUVIDA COMENTADA NO CODIGO)
+     * PRONTO
      */
     public Statement parseStatement() throws IOException {
         
@@ -947,7 +950,8 @@ public class Parser {
                                       "\" cannot start a statement.";
                     throw error( scanner.getToken().getPosition(), errorMsg );
                 }
-                throw error("Identifier not declared"); //NÃO SABIA O QUE COLOCAR AQUI, ERA ISSO OU "return null", DEPENDE SE A LINGUAGEM ACEITA ATRIBUIÇÃO DE VALORES EM UMA VARIAVEL NÃO DECLARADA
+                String errorMsg = "Identifier \"" + scanner.getToken() + "\" has not been declared.";
+                throw error( scanner.getToken().getPosition(), errorMsg );
             } else if ( scanner.getSymbol() == Symbol.ifRW ) {
                 return parseIfStmt();
             } else if ( scanner.getSymbol() == Symbol.loopRW ) {
@@ -1216,7 +1220,7 @@ public class Parser {
      * Analisa a regra gramatical abaixo:
      * 
      * exitStmt = "exit" ( "when" booleanExpr )? ";" .
-     * NÃO SEI ONDE PEGAR O LOOPSTATEMENT DO RETURN
+     * PRONTO
      */
     public ExitStmt parseExitStmt() throws IOException {
         
@@ -1242,7 +1246,7 @@ public class Parser {
                     
         try {
             
-            Expression booleanExpr;
+            Expression booleanExpr = null;
                     
             match( Symbol.exitRW );
             
@@ -1253,7 +1257,7 @@ public class Parser {
             
             match( Symbol.semicolon );
             
-            //return new ExitStmt(booleanExpr, ??? ); NÃO SEI COMO PEGAR O LOOPSTATEMENT DO RETURN
+            return new ExitStmt( booleanExpr, loopContext.getLoopStmt() );
             
         } catch ( ParserException e ) {
             ErrorHandler.getInstance().reportError( e );
@@ -1268,7 +1272,6 @@ public class Parser {
          * seja inserindo-a em outra posição etc.
          */
         
-        return null;
     }
 
     /**
@@ -1436,7 +1439,7 @@ public class Parser {
      * Analisa a regra gramatical abaixo:
      * 
      * procedureCallStmt = procId ( actualParameters )? ";" .
-     * PRONTO (VERIFICAR SE O CAST DO RETURN TÁ CERTO)
+     * PRONTO
      */
     public ProcedureCallStmt parseProcedureCallStmt() throws IOException {
         
@@ -1541,7 +1544,7 @@ public class Parser {
      * Analisa a regra gramatical abaixo:
      * 
      * returnStmt = "return" ( expression )? ";" .
-     * NÃO SEI ONDE PEGAR O SUBPROGRAMDECL
+     * PRONTO
      */
     public ReturnStmt parseReturnStmt() throws IOException {
         
@@ -1577,7 +1580,7 @@ public class Parser {
             
             match( Symbol.semicolon );
             
-            //return new ReturnStmt(subprogramDecl, expression, returnPosition); NÃO SEI ONDE PEGAR O SUBPROGRAMDECL
+            return new ReturnStmt( subprogramContext.getSubprogramDecl(), expression, returnPosition );
             
         } catch ( ParserException e ) {
             ErrorHandler.getInstance().reportError( e );
@@ -1592,7 +1595,6 @@ public class Parser {
          * seja inserindo-a em outra posição etc.
          */
         
-        return null;
     }
 
     /**
@@ -1732,7 +1734,7 @@ public class Parser {
      * 
      * simpleExpr = ( addingOp )? term ( addingOp term )* .
      *   addingOp = "+" | "-" .
-     * PROVAVELMENTE O USO DO IF QUE EU CRIEI E DO PRIMEIRO OPERADOR ESTÁ ERRADO
+     * PRONTO
      */
     public Expression parseSimpleExpr() throws IOException {
         
@@ -1752,19 +1754,19 @@ public class Parser {
         // <editor-fold defaultstate="collapsed" desc="Implementação">
         
         Token operator = null;
-        Expression leftOperand;
+        Expression leftOperand = null;
         Expression rightOperand = null;
         
         
         if ( scanner.getSymbol().isAddingOperator() ) {
             operator = scanner.getToken();
-            matchCurrentSymbol(); //N SEI SE AQUI EU DEVERIA FAZER O OPERADOR '-' TORNAR O PROXIMO NUMERO NEGATIVO
+            matchCurrentSymbol();
         }
         
         leftOperand = parseTerm();
         
         if ( operator != null ) {
-            leftOperand = new AddingExpr( null, operator, leftOperand );
+            leftOperand = new NegationExpr( operator, leftOperand );
         }
         
         while ( scanner.getSymbol().isAddingOperator() ) {
