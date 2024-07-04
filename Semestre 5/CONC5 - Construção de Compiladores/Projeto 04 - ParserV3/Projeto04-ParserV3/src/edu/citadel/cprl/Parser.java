@@ -125,14 +125,12 @@ public class Parser {
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
         
-        InitialDecl decl;
-        
         if ( scanner.getSymbol() == Symbol.constRW ) {
-            decl = parseConstDecl();
+            return parseConstDecl();
         } else if ( scanner.getSymbol() == Symbol.typeRW ) {
-            decl = parseArrayTypeDecl();
+            return parseArrayTypeDecl();
         } else if ( scanner.getSymbol() == Symbol.varRW ) {
-            decl = parseVarDecl();
+            return parseVarDecl();
         } else {
             throw internalError( "Invalid initial decl." );
         }
@@ -143,7 +141,6 @@ public class Parser {
          * ela deve ser modificada para que o seja feito o que é esperado
          * seja inserindo-a em outra posição etc.
          */
-        return decl;
         
     }
 
@@ -185,30 +182,30 @@ public class Parser {
         try {
             Token constId;
             Type typeOfLiteral;
-            Token literal;  
+            Token literal;
+            
             match( Symbol.constRW );
             
             if ( scanner.getSymbol() == Symbol.identifier ) {
-                constId = scanner.getToken();
-                //idTable.add( scanner.getToken(), IdType.constantId ); //ESSA LINHA É A ORIGINAL E EU NÃO ENTENDI, o que eu fiz foi jogar a declaração que eu criei no final para a idTable
+                constId = scanner.getToken();               
                 match( Symbol.identifier );
             } else {
-                throw error ( "Symbol is not a identifier ");
+                throw error ( "Symbol is not a identifier "); /*AQUI ESTA DIFERENTE*/
             }
             
             match( Symbol.assign );
             
             if ( scanner.getSymbol().isLiteral() ) {
-                typeOfLiteral = Type.getTypeOf(scanner.getSymbol());
                 literal = parseLiteral();
-                matchCurrentSymbol();
             } else {
                 throw error( "Invalid literal expression." );
             }
             
             match( Symbol.semicolon );
             
-            ConstDecl decl = new ConstDecl(constId, typeOfLiteral, literal);
+            typeOfLiteral = Type.getTypeOf( literal.getSymbol() );
+            
+            ConstDecl decl = new ConstDecl( constId, typeOfLiteral, literal );
             idTable.add( decl );
             return decl;
             
@@ -388,10 +385,9 @@ public class Parser {
             
             if ( scanner.getSymbol() == Symbol.intLiteral ) {
                 intConstValue = parseConstValue();
-                if (intConstValue == null){
+                if ( intConstValue == null ){
                     intConstValue = new ConstValue( new Token( Symbol.intLiteral, scanner.getPosition(), "0" ) );
                 }
-                matchCurrentSymbol();
             } else {
                 throw error( "Invalid constant." );
             }
@@ -401,7 +397,7 @@ public class Parser {
             typeName = parseTypeName();
             match( Symbol.semicolon );
             
-            ArrayTypeDecl decl = new ArrayTypeDecl(typeId, typeName, intConstValue);
+            ArrayTypeDecl decl = new ArrayTypeDecl( typeId, typeName, intConstValue );
             idTable.add(decl);
             return decl;
             
@@ -522,12 +518,10 @@ public class Parser {
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
         
-        SubprogramDecl subProgramDecl;
-        
         if ( scanner.getSymbol() == Symbol.procedureRW ) {
-            subProgramDecl = parseProcedureDecl();
+            return parseProcedureDecl();
         } else if ( scanner.getSymbol() == Symbol.functionRW ) {
-            subProgramDecl = parseFunctionDecl();
+            return parseFunctionDecl();
         } else {
             throw internalError( "Invalid subprogram decl." );
         }
@@ -538,7 +532,6 @@ public class Parser {
          * ela deve ser modificada para que o seja feito o que é esperado
          * seja inserindo-a em outra posição etc.
          */
-        return subProgramDecl;
         
     }
 
@@ -642,7 +635,7 @@ public class Parser {
             match( Symbol.functionRW );
             Token funcId = scanner.getToken();
             match( Symbol.identifier );
-            FunctionDecl funcDecl = new FunctionDecl(funcId);
+            FunctionDecl funcDecl = new FunctionDecl( funcId );
             idTable.add( funcDecl );
             idTable.openScope();
             
@@ -652,11 +645,14 @@ public class Parser {
             
             match( Symbol.returnRW );
             
-            funcDecl.setType( parseTypeName() ); 
+            funcDecl.setType( parseTypeName() ); /*AQUI ESTA DIFERENTE*/
             
             match( Symbol.isRW );
-            funcDecl.setInitialDecls(parseInitialDecls());
-            funcDecl.setStatementPart( parseStatementPart() ); 
+            funcDecl.setInitialDecls( parseInitialDecls() );
+            
+            subprogramContext.beginSubprogramDecl( funcDecl );
+            funcDecl.setStatementPart( parseStatementPart() );
+            subprogramContext.endSubprogramDecl();
             idTable.closeScope();
 
             Token funcId2 = scanner.getToken();
@@ -941,7 +937,7 @@ public class Parser {
                     String errorMsg = "Identifier \"" + scanner.getToken() + 
                                       "\" has not been declared.";
                     throw error( scanner.getToken().getPosition(), errorMsg );
-                } else if ( decl instanceof VarDecl ) {
+                } else if ( decl instanceof NamedDecl ) {
                     return parseAssignmentStmt();
                 } else if ( decl instanceof ProcedureDecl ) {
                     return parseProcedureCallStmt();
@@ -950,8 +946,10 @@ public class Parser {
                                       "\" cannot start a statement.";
                     throw error( scanner.getToken().getPosition(), errorMsg );
                 }
-                String errorMsg = "Identifier \"" + scanner.getToken() + "\" has not been declared.";
+                
+                String errorMsg = "Identifier \"" + scanner.getToken() + "\" has not been declared."; //TA CAINDO NESSE ERRO, PROVAVELMENTE N ESTÁ CAINDO EM NENHUM DOS IFS ACIMA
                 throw error( scanner.getToken().getPosition(), errorMsg );
+                
             } else if ( scanner.getSymbol() == Symbol.ifRW ) {
                 return parseIfStmt();
             } else if ( scanner.getSymbol() == Symbol.loopRW ) {
@@ -1029,6 +1027,7 @@ public class Parser {
         try {
             
             Variable variable = parseVariable();
+            Position assignPosition = scanner.getPosition();
             
             try {
                 
@@ -1049,7 +1048,7 @@ public class Parser {
             Expression expression = parseExpression();
             match( Symbol.semicolon );
             
-            return new AssignmentStmt(variable, expression, scanner.getPosition());
+            return new AssignmentStmt( variable, expression, assignPosition );
             
         } catch ( ParserException e ) {
             ErrorHandler.getInstance().reportError( e );
@@ -1125,19 +1124,19 @@ public class Parser {
                 match( Symbol.thenRW );
                 List<Statement> elsifStatements = parseStatements();
                 
-                elsifParts.add(new ElsifPart(elsifBooleanExpr, elsifStatements));
+                elsifParts.add( new ElsifPart( elsifBooleanExpr, elsifStatements ) );
             }
             
             if ( scanner.getSymbol() == Symbol.elseRW ) {
                 match( Symbol.elseRW );
-                elseStatements = parseStatements();
+                elseStatements = parseStatements(); //AQUI ESTÁ DIFERENTE
             }
         
             match( Symbol.endRW );
             match( Symbol.ifRW );
             match( Symbol.semicolon );
             
-            return new IfStmt(booleanExpr, statements, elsifParts, elseStatements);
+            return new IfStmt( booleanExpr, statements, elsifParts, elseStatements );
             
         } catch ( ParserException e ) {
             ErrorHandler.getInstance().reportError( e );
@@ -1186,14 +1185,21 @@ public class Parser {
         // <editor-fold defaultstate="collapsed" desc="Implementação">
                     
         try {
+            
             LoopStmt loopStmt = new LoopStmt();
+            Expression booleanExpr = null;
+            
             if ( scanner.getSymbol() == Symbol.whileRW ) {
                 matchCurrentSymbol();
-                loopStmt.setWhileExpr( parseExpression() ); 
+                booleanExpr = parseExpression(); 
             }
 
             match( Symbol.loopRW );
+            loopStmt.setWhileExpr( booleanExpr );
+            
+            loopContext.beginLoop( loopStmt );
             loopStmt.setStatements( parseStatements() );
+            loopContext.endLoop();
 
             match( Symbol.endRW );
             match( Symbol.loopRW );
@@ -1257,6 +1263,8 @@ public class Parser {
             
             match( Symbol.semicolon );
             
+            /*AQUI ESTA FALTANDO UM ERROR*/
+            
             return new ExitStmt( booleanExpr, loopContext.getLoopStmt() );
             
         } catch ( ParserException e ) {
@@ -1303,7 +1311,7 @@ public class Parser {
             Variable variable = parseVariableExpr();
             match( Symbol.semicolon );
             
-            return new ReadStmt(variable);
+            return new ReadStmt( variable );
             
         } catch ( ParserException e ) {
             ErrorHandler.getInstance().reportError( e );
@@ -1349,7 +1357,7 @@ public class Parser {
             List<Expression> expressions = parseExpressions();
             match( Symbol.semicolon );
             
-            return new WriteStmt(expressions);
+            return new WriteStmt( expressions );
             
         } catch ( ParserException e ) {
             ErrorHandler.getInstance().reportError( e );
@@ -1470,7 +1478,7 @@ public class Parser {
             match( Symbol.identifier );
             
             if ( scanner.getSymbol().isExprStarter() ) {
-                actualParameters = parseActualParameters();
+                actualParameters = parseActualParameters(); /*AQUI ESTÁ DIFERENTE*/
             }
             
             match( Symbol.semicolon );
@@ -1579,6 +1587,8 @@ public class Parser {
             }
             
             match( Symbol.semicolon );
+            
+            /*FALTA UM ERRO AQUI*/
             
             return new ReturnStmt( subprogramContext.getSubprogramDecl(), expression, returnPosition );
             
@@ -1715,7 +1725,7 @@ public class Parser {
             operator = scanner.getToken();
             matchCurrentSymbol();
             relation2 = parseSimpleExpr();
-            relation = new RelationalExpr(relation, operator, relation2);
+            relation = new RelationalExpr( relation, operator, relation2 );
         }
         
         return relation;
@@ -1773,7 +1783,7 @@ public class Parser {
             operator = scanner.getToken();
             matchCurrentSymbol();
             rightOperand = parseTerm();
-            leftOperand = new AddingExpr(leftOperand, operator, rightOperand);
+            leftOperand = new AddingExpr( leftOperand, operator, rightOperand );
         }
         
         return leftOperand; 
@@ -1928,7 +1938,7 @@ public class Parser {
             if ( scanner.getSymbol().isLiteral() ) {
                 return new ConstValue( parseLiteral() );
             } else if ( scanner.getSymbol() == Symbol.identifier ) {
-                ConstValue constValue = new ConstValue(scanner.getToken(), (ConstDecl)idTable.get( scanner.getToken() ) );
+                ConstValue constValue = new ConstValue( scanner.getToken(), (ConstDecl)idTable.get( scanner.getToken() ) );
                 matchCurrentSymbol();
                 return constValue;
             } else {
