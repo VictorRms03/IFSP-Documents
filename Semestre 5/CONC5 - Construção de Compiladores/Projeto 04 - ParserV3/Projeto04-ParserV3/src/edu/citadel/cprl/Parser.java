@@ -190,7 +190,7 @@ public class Parser {
                 constId = scanner.getToken();               
                 match( Symbol.identifier );
             } else {
-                throw error ( "Symbol is not a identifier "); /*AQUI ESTA DIFERENTE*/
+                throw error ( "Symbol is not a identifier "); 
             }
             
             match( Symbol.assign );
@@ -383,14 +383,12 @@ public class Parser {
             match( Symbol.arrayRW );
             match( Symbol.leftBracket );
             
-            if ( scanner.getSymbol() == Symbol.intLiteral ) {
-                intConstValue = parseConstValue();
-                if ( intConstValue == null ){
-                    intConstValue = new ConstValue( new Token( Symbol.intLiteral, scanner.getPosition(), "0" ) );
-                }
-            } else {
-                throw error( "Invalid constant." );
+            
+            intConstValue = parseConstValue();
+            if ( intConstValue == null ){
+                intConstValue = new ConstValue( new Token( Symbol.intLiteral, scanner.getPosition(), "0" ) );
             }
+            
             
             match( Symbol.rightBracket );
             match( Symbol.ofRW );
@@ -398,7 +396,7 @@ public class Parser {
             match( Symbol.semicolon );
             
             ArrayTypeDecl decl = new ArrayTypeDecl( typeId, typeName, intConstValue );
-            idTable.add(decl);
+            idTable.add( decl );
             return decl;
             
         } catch ( ParserException e ) {
@@ -645,7 +643,7 @@ public class Parser {
             
             match( Symbol.returnRW );
             
-            funcDecl.setType( parseTypeName() ); /*AQUI ESTA DIFERENTE*/
+            funcDecl.setType( parseTypeName() );
             
             match( Symbol.isRW );
             funcDecl.setInitialDecls( parseInitialDecls() );
@@ -945,10 +943,10 @@ public class Parser {
                     String errorMsg = "Identifier \"" + scanner.getToken() + 
                                       "\" cannot start a statement.";
                     throw error( scanner.getToken().getPosition(), errorMsg );
+                } else {
+                    String errorMsg = "Identifier \"" + scanner.getToken() + "\" has not been declared."; //TA CAINDO NESSE ERRO, PROVAVELMENTE N ESTÁ CAINDO EM NENHUM DOS IFS ACIMA
+                    throw error( scanner.getToken().getPosition(), errorMsg );  
                 }
-                
-                String errorMsg = "Identifier \"" + scanner.getToken() + "\" has not been declared."; //TA CAINDO NESSE ERRO, PROVAVELMENTE N ESTÁ CAINDO EM NENHUM DOS IFS ACIMA
-                throw error( scanner.getToken().getPosition(), errorMsg );
                 
             } else if ( scanner.getSymbol() == Symbol.ifRW ) {
                 return parseIfStmt();
@@ -1129,7 +1127,7 @@ public class Parser {
             
             if ( scanner.getSymbol() == Symbol.elseRW ) {
                 match( Symbol.elseRW );
-                elseStatements = parseStatements(); //AQUI ESTÁ DIFERENTE
+                elseStatements = parseStatements();
             }
         
             match( Symbol.endRW );
@@ -1253,7 +1251,8 @@ public class Parser {
         try {
             
             Expression booleanExpr = null;
-                    
+            
+            Position position = scanner.getPosition();
             match( Symbol.exitRW );
             
             if ( scanner.getSymbol() == Symbol.whenRW ) {
@@ -1263,9 +1262,12 @@ public class Parser {
             
             match( Symbol.semicolon );
             
-            /*AQUI ESTA FALTANDO UM ERROR*/
+            LoopStmt loopStmt = loopContext.getLoopStmt();
+            if( loopStmt == null ) {
+                throw error( position, "Exit statement is not nested within a loop." );
+            }
             
-            return new ExitStmt( booleanExpr, loopContext.getLoopStmt() );
+            return new ExitStmt( booleanExpr, loopStmt );
             
         } catch ( ParserException e ) {
             ErrorHandler.getInstance().reportError( e );
@@ -1478,7 +1480,7 @@ public class Parser {
             match( Symbol.identifier );
             
             if ( scanner.getSymbol().isExprStarter() ) {
-                actualParameters = parseActualParameters(); /*AQUI ESTÁ DIFERENTE*/
+                actualParameters = parseActualParameters();
             }
             
             match( Symbol.semicolon );
@@ -1588,7 +1590,9 @@ public class Parser {
             
             match( Symbol.semicolon );
             
-            /*FALTA UM ERRO AQUI*/
+            if ( subprogramContext.getSubprogramDecl() == null ) {
+                throw error( returnPosition, "Return statement is not nested within a subprogram." );
+            }
             
             return new ReturnStmt( subprogramContext.getSubprogramDecl(), expression, returnPosition );
             
@@ -1764,8 +1768,8 @@ public class Parser {
         // <editor-fold defaultstate="collapsed" desc="Implementação">
         
         Token operator = null;
-        Expression leftOperand = null;
-        Expression rightOperand = null;
+        Expression leftOperand;
+        Expression rightOperand;
         
         
         if ( scanner.getSymbol().isAddingOperator() ) {
@@ -1818,8 +1822,8 @@ public class Parser {
         // <editor-fold defaultstate="collapsed" desc="Implementação">
                     
         Expression leftOperand = parseFactor();
-        Token operator = null;
-        Expression rightOperand = null;
+        Token operator;
+        Expression rightOperand;
         
         while ( scanner.getSymbol().isMultiplyingOperator() ) {
             operator = scanner.getToken();
@@ -2007,7 +2011,7 @@ public class Parser {
         try {
             
             Token funcId = scanner.getToken();
-            List<Expression> actualParameters = null;
+            List<Expression> actualParameters = new ArrayList<>();
             
             match( Symbol.identifier );
             
