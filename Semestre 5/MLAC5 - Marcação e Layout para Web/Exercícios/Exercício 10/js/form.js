@@ -48,12 +48,78 @@ function validateForm() {
         window.alert("Cidade deve ser digitado");
         return false;
     }
+
 }
 
 function inputToUpperCase() {
+    document.getElementById("nome").value = document.forms["formulario"]["nome"].value.toUpperCase();
+}
+
+function alertForm() {
+
+    const errors = [];
 
     let x = document.forms["formulario"]["nome"].value;
+    if ( x == null || x == "" ) {
+        errors.push("Nome");
+    }
 
-    document.forms["formulario"]["nome"].value = x.toU
+    x = document.forms["formulario"]["endereco"].value;
+    if ( x == null || x == "" ) {
+        errors.push("Endereço");
+    }
+
+    x = document.forms["formulario"]["numero"].value;
+    if ( x == null || x == "" || x < 300 || x > 500 ) {
+        errors.push("Número");
+    }
+
+    x = document.forms["formulario"]["cep"].value;
+    if ( x == null || x == "" ) {
+        errors.push("CEP");
+    }
+
+    x = document.forms["formulario"]["bairro"].value;
+    if ( x == null || x == "" ) {
+        errors.push("Bairro");
+    }
+
+    x = document.forms["formulario"]["estado"].value;
+    if ( x == null || x == "" ) {
+        errors.push("Estado");
+    }
+
+    x = document.forms["formulario"]["cidade"].value;
+    if ( x == null || x == "" ) {
+        errors.push("Cidade");
+    }
+
+    if ( errors.length > 0 ) {
+
+        let errorStr = "Os seguintes campos estão errados: " + errors[0];
+
+        for ( let i = 1; i < errors.length; i++ ) {
+            errorStr = errorStr + ", " + errors[i];
+        }
+
+        window.alert( errorStr );
+
+    } else {
+        window.alert( "Campos corretamente preenchidos" );
+    }
+
+}
+
+function writeData() {
+
+    let datas = "Nome: " + document.forms["formulario"]["nome"].value + "<br>" +
+                "Endereço: " + document.forms["formulario"]["endereco"].value + "<br>" +
+                "Número: " + document.forms["formulario"]["numero"].value + "<br>" +
+                "CEP: " + document.forms["formulario"]["CEP"].value + "<br>" +
+                "Bairro: " + document.forms["formulario"]["Bairro"].value + "<br>" +
+                "Estado: " + document.forms["formulario"]["Estado"].value + "<br>" +
+                "Cidade: " + document.forms["formulario"]["Cidade"].value + "<br>";
+
+    document.getElementsByName('body').innerHTML = datas;
 
 }
