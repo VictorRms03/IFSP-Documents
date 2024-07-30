@@ -4,6 +4,7 @@ import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.Token;
+import java.util.Iterator;
 
 import java.util.List;
 
@@ -55,7 +56,37 @@ public class ProcedureCallStmt extends Statement {
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
                     
-        // sua implementação aqui
+        try {
+            
+            for( Expression param : this.actualParams ){
+                param.checkConstraints();
+            }
+            
+            this.procDecl.checkConstraints();
+            
+            if ( this.actualParams.size() != this.procDecl.getFormalParams().size() ) {
+                throw error( this.procId.getPosition(), "Incorrect number of actual parameters." );
+            }
+            
+            Iterator<Expression> iterActual = this.actualParams.iterator();
+            Iterator<ParameterDecl> iterFormal = this.procDecl.getFormalParams().iterator();
+
+            while ( iterActual.hasNext() ) {
+                Expression expr = iterActual.next();
+                ParameterDecl param = iterFormal.next();
+
+                if ( !matchTypes( expr.getType(), param.getType() ) ) {
+                    String errorMsg = "Parameter type mismatch.";
+                    throw error( expr.getPosition(), errorMsg );
+                }
+            }
+            
+            //TRATAR A REGRA VARIADA
+            
+            
+        } catch ( ConstraintException e ) {
+            ErrorHandler.getInstance().reportError( e );
+        }
 
         // </editor-fold>
         

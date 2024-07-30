@@ -36,8 +36,25 @@ public class MultiplyingExpr extends BinaryExpr {
         // Regra Variada: o resultado tem que ser do tipo Integer.
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
-                    
-        // sua implementação aqui
+        
+        try {
+            
+            this.getLeftOperand().checkConstraints();
+            this.getRightOperand().checkConstraints();
+            
+            if ( this.getLeftOperand().getType() != Type.Integer ) {
+                String errorMsg = "Left operand for expression should have type Integer.";
+                throw error( this.getLeftOperand().getPosition(), errorMsg );
+            }
+
+            if ( this.getRightOperand().getType() != Type.Integer ) {
+                String errorMsg = "Right operand for expression should have type Integer.";
+                throw error( this.getRightOperand().getPosition(), errorMsg );
+            }
+            
+        } catch ( ConstraintException e ) {
+            ErrorHandler.getInstance().reportError( e );
+        }
 
         // </editor-fold>
         

@@ -107,14 +107,14 @@ public class FunctionDecl extends SubprogramDecl {
             
             for( ParameterDecl param : this.getFormalParams() ) {
                 if ( param.isVarParam() ) {
-                    throw error( param.getPosition(), "ALGUM ERRO" );
+                    throw error( param.getPosition(), "ALGUM ERRO" ); //MENSAGEM ERRADA
                 }    
             }
             
-            
+            //VERIFICAR REGRA 2
             
         } catch ( ConstraintException e ){
-            
+            ErrorHandler.getInstance().reportError( e );
         }
 
         // </editor-fold>

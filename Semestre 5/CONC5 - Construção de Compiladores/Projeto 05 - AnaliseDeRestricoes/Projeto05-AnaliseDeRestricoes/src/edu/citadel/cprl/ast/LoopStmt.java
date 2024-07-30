@@ -77,8 +77,23 @@ public class LoopStmt extends Statement {
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
                     
-        // sua implementação aqui
-
+        try {
+            
+            if ( this.whileExpr != null ) {
+                
+                this.whileExpr.checkConstraints();
+                
+                if ( this.whileExpr.getType() != Type.Boolean ){
+                    String errorMsg = "An \"when\" condition should have type Boolean.";
+                    throw error( this.whileExpr.getPosition(), errorMsg );
+                }
+                
+            }
+                    
+        } catch ( ConstraintException e ) {
+            ErrorHandler.getInstance().reportError( e );
+        }
+        
         // </editor-fold>
         
     }

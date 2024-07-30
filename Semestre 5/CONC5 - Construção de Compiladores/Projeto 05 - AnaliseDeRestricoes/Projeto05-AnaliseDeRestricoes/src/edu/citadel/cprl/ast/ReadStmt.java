@@ -33,8 +33,17 @@ public class ReadStmt extends Statement {
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
                     
-        // sua implementação aqui
-
+        try {
+            
+            //A PARTE DO ArrayType deve estar errada
+            if ( !( this.variable.getType() == Type.Integer || this.variable.getType() == Type.Char || this.variable.getType() instanceof ArrayType ) ) {
+                throw error( this.variable.getPosition(), "MENSAGEM DE ERRO" );
+            }
+            
+        } catch ( ConstraintException e ) {
+            ErrorHandler.getInstance().reportError( e );
+        }
+        
         // </editor-fold>
         
     }

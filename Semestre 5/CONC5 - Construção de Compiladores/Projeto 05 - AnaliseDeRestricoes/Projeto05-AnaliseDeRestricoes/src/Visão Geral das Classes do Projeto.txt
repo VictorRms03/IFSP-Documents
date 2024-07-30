@@ -59,18 +59,18 @@ No pacote edu.citadel.cprl.ast
   IfStmt.java    
   InitialDecl.java    
   LogicalExpr.java    
-* LoopStmt.java              -> Implementar o método checkConstraints()
-* MultiplyingExpr.java       -> Implementar o método checkConstraints()
+* LoopStmt.java              -> Implementar o método checkConstraints()x
+* MultiplyingExpr.java       -> Implementar o método checkConstraints()x
   NamedDecl.java             
   NamedValue.java            
 * NegationExpr.java          -> Não precisa mexer por enquanto
-* NotExpr.java               -> Implementar o método checkConstraints()
+* NotExpr.java               -> Implementar o método checkConstraints()x
   OutputStmt.java    
   ParameterDecl.java    
 * ProcedureCallStmt.java     -> Implementar o método checkConstraints()
 * ProcedureDecl.java         -> Não precisa mexer por enquanto
   Program.java    
-* ReadStmt.java              -> Implementar o método checkConstraints()
+* ReadStmt.java              -> Implementar o método checkConstraints()x
 * RelationalExpr.java        -> Implementar o método checkConstraints()
 * ReturnStmt.java            -> Implementar o método checkConstraints()
   SingleVarDecl.java    
