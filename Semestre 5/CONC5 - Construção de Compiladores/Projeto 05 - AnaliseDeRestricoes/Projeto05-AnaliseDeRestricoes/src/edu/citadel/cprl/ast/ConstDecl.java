@@ -41,16 +41,21 @@ public class ConstDecl extends InitialDecl {
         try {
             
             if ( this.literal.getSymbol() == Symbol.intLiteral ) {
+                
                 try {
-                    Integer.parseInt( this.literal.getText() );
-                } catch ( NumberFormatException e1 ) {
-                    String errorMsg = "The number \"" + literal.getText()
-                            + "\" cannot be converted to an integer in CPRL.";
                     
-                    this.literal.setText( "1" );
+                    Integer.parseInt( this.literal.getText() );
+                    
+                } catch ( NumberFormatException e1 ) {
+                    
+                    String errorMsg = "The number \"" + this.literal.getText() + "\" cannot be converted to an integer in CPRL.";
+                    
+                    this.literal.setText( "1" );    
                     
                     throw error( this.literal.getPosition(), errorMsg );
+                    
                 }
+                
             }
             
             

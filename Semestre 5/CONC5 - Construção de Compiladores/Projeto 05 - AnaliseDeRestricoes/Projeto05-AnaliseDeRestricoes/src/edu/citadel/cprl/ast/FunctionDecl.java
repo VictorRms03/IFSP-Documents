@@ -3,7 +3,6 @@ package edu.citadel.cprl.ast;
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
-import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 
 import java.util.List;
@@ -101,10 +100,6 @@ public class FunctionDecl extends SubprogramDecl {
                     
         try {
             
-            if ( this.getStatementPart() != null ){
-                this.getStatementPart().checkConstraints();
-            }
-            
             for ( InitialDecl decl : this.getInitialDecls() ) {
                 decl.checkConstraints();
             }
@@ -123,7 +118,7 @@ public class FunctionDecl extends SubprogramDecl {
                 throw error( this.getPosition(), "A function must have at least one return statement." );
             }
             
-            getStatementPart().checkConstraints();
+            this.getStatementPart().checkConstraints();
             
         } catch ( ConstraintException e ){
             ErrorHandler.getInstance().reportError( e );

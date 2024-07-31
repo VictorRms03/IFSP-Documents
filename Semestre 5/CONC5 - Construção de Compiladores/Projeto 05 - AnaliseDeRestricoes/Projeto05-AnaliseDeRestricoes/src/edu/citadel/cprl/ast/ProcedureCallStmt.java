@@ -4,7 +4,6 @@ import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.Token;
-import java.util.Iterator;
 
 import java.util.List;
 
@@ -62,10 +61,8 @@ public class ProcedureCallStmt extends Statement {
                 param.checkConstraints();
             }
             
-            this.procDecl.checkConstraints();
-            
             if ( this.actualParams.size() != this.procDecl.getFormalParams().size() ) {
-                throw error( this.procId.getPosition(), "ERRO ProcedureCallStmt" );
+                throw error( this.procId.getPosition(), "Number of actual parameters doesn't match with formal parameters." ); //x
             }
 
             for ( int i=0; i<this.actualParams.size(); i++ ) {
@@ -77,10 +74,7 @@ public class ProcedureCallStmt extends Statement {
                 if ( this.procDecl.getFormalParams().get(i).isVarParam() ) {
                     
                     if ( this.actualParams.get(i) instanceof NamedValue ) {
-                        
-                        Expression namedToVar = new Variable( (NamedValue) this.actualParams.get(i) );
-                        this.actualParams.set(i, namedToVar);
-                        
+                        this.actualParams.set(i, new Variable( (NamedValue) this.actualParams.get(i) ) );
                     } else {
                         throw error( this.actualParams.get(i).getPosition(), "Expression for a var parameter must be a variable." );
                     }

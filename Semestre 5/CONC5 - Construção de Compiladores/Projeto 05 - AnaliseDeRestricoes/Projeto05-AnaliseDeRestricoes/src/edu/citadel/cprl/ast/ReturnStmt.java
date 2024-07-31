@@ -64,14 +64,18 @@ public class ReturnStmt extends Statement {
                 
                 this.returnExpr.checkConstraints();
                 
-                if ( this.returnExpr.getType() != this.subprogramDecl.getType() ) {
-                    throw error( this.returnExpr.getPosition(), "Return expression allowed only within functions." );
+                if ( !( this.subprogramDecl instanceof FunctionDecl ) ) {
+                    throw error( this.returnExpr.getPosition(), "Return expression allowed only within functions.");
                 }
                 
-                if ( !( this.subprogramDecl instanceof FunctionDecl ) ) {
-                    throw error( this.returnExpr.getPosition(), "ERRO ReturnStmt");
+                if ( this.returnExpr.getType() != this.subprogramDecl.getType() ) {
+                    throw error( this.returnExpr.getPosition(), "Return expression type does not match function return type." );
                 }
 
+            } else {
+                if ( this.subprogramDecl instanceof FunctionDecl ) {
+                    throw error( this.returnPosition, "A return statement nested within a function must return a value." );
+                }
             }
             
         } catch ( ConstraintException e ) {

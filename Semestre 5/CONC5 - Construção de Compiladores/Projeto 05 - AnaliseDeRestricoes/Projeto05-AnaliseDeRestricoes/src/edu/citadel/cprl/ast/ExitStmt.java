@@ -3,7 +3,6 @@ package edu.citadel.cprl.ast;
 import edu.citadel.compiler.CodeGenException;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
-import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Type;
 
 /**
@@ -48,8 +47,7 @@ public class ExitStmt extends Statement {
             if ( this.whenExpr != null ) {
                 
                 if ( this.whenExpr.getType() != Type.Boolean ){
-                    String errorMsg = "The \"when\" expression should have type Boolean.";
-                    throw error( this.whenExpr.getPosition(), errorMsg );
+                    throw error( this.whenExpr.getPosition(), "The \"when\" expression should have type Boolean." );
                 }
                 
                 this.whenExpr.checkConstraints();

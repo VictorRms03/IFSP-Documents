@@ -3,7 +3,6 @@ package edu.citadel.cprl.ast;
 import edu.citadel.compiler.ConstraintException;
 import edu.citadel.compiler.ErrorHandler;
 import edu.citadel.cprl.ArrayType;
-import edu.citadel.cprl.Symbol;
 import edu.citadel.cprl.Token;
 import edu.citadel.cprl.Type;
 
@@ -41,13 +40,11 @@ public class ArrayTypeDecl extends InitialDecl {
             numElements.checkConstraints();
         
             if ( numElements.getType() != Type.Integer ){
-                String errorMsg = "numElements for constValue should have type Integer.";
-                throw error( numElements.getPosition(), errorMsg );
+                throw error( numElements.getPosition(), "numElements for constValue should have type Integer." );
             }
             
             if ( numElements.getLiteralIntValue() <= 0 ) {
-                String errorMsg = "numElements should be positive.";
-                throw error( numElements.getPosition(), errorMsg );
+                throw error( numElements.getPosition(), "numElements should be positive." );
             }
             
             
@@ -55,8 +52,6 @@ public class ArrayTypeDecl extends InitialDecl {
             ErrorHandler.getInstance().reportError( e );
         }
         
-        
-
         // </editor-fold>
         
     }

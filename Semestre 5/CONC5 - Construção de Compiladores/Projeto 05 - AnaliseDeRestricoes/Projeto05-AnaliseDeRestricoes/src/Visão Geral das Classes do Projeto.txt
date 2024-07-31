@@ -44,34 +44,34 @@ No pacote edu.citadel.cprl.ast
 
   AST.java
   AddingExpr.java
-* ArrayTypeDecl.java         -> Implementar o método checkConstraints()x
+* ArrayTypeDecl.java         -> Implementar o método checkConstraints()
 * AssignmentStmt.java        -> Não precisa mexer por enquanto
   BinaryExpr.java    
-* ConstDecl.java             -> Implementar o método checkConstraints()x
+* ConstDecl.java             -> Implementar o método checkConstraints()
   ConstValue.java    
   Declaration.java    
 * DeclarativePart.java       -> Não precisa mexer por enquanto
   ElsifPart    
-* ExitStmt.java              -> Implementar o método checkConstraints()x
+* ExitStmt.java              -> Implementar o método checkConstraints()
   Expression.java    
   FunctionCall.java    
 * FunctionDecl.java          -> Implementar o método checkConstraints()
   IfStmt.java    
   InitialDecl.java    
   LogicalExpr.java    
-* LoopStmt.java              -> Implementar o método checkConstraints()x
-* MultiplyingExpr.java       -> Implementar o método checkConstraints()x
+* LoopStmt.java              -> Implementar o método checkConstraints()
+* MultiplyingExpr.java       -> Implementar o método checkConstraints()
   NamedDecl.java             
   NamedValue.java            
 * NegationExpr.java          -> Não precisa mexer por enquanto
-* NotExpr.java               -> Implementar o método checkConstraints()x
+* NotExpr.java               -> Implementar o método checkConstraints()
   OutputStmt.java    
   ParameterDecl.java    
 * ProcedureCallStmt.java     -> Implementar o método checkConstraints()
 * ProcedureDecl.java         -> Não precisa mexer por enquanto
   Program.java    
-* ReadStmt.java              -> Implementar o método checkConstraints()x
-* RelationalExpr.java        -> Implementar o método checkConstraints()x
+* ReadStmt.java              -> Implementar o método checkConstraints()
+* RelationalExpr.java        -> Implementar o método checkConstraints()
 * ReturnStmt.java            -> Implementar o método checkConstraints()
   SingleVarDecl.java    
   Statement.java    
@@ -83,14 +83,6 @@ No pacote edu.citadel.cprl.ast
   WriteStmt.java    
 * WritelnStmt.java           -> Não precisa mexer por enquanto
 
-ERROS:
-208
-213
-214
-216
-217
-219
-222
-
 *Retirar comentários
+*Retirar imports não utilizados
 *Fazer textos dos erros não utilizados
