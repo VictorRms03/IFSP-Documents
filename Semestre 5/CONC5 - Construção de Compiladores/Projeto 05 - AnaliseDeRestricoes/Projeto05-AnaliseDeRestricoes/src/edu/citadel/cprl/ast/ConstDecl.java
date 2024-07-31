@@ -46,6 +46,9 @@ public class ConstDecl extends InitialDecl {
                 } catch ( NumberFormatException e1 ) {
                     String errorMsg = "The number \"" + literal.getText()
                             + "\" cannot be converted to an integer in CPRL.";
+                    
+                    this.literal.setText( "1" );
+                    
                     throw error( this.literal.getPosition(), errorMsg );
                 }
             }

@@ -45,13 +45,13 @@ public class ArrayTypeDecl extends InitialDecl {
                 throw error( numElements.getPosition(), errorMsg );
             }
             
-            if ( numElements.getLiteralIntValue() > 0 ) {
+            if ( numElements.getLiteralIntValue() <= 0 ) {
                 String errorMsg = "numElements should be positive."; //MENSAGEM DE ERRO DEVE ESTAR ERRADA
                 throw error( numElements.getPosition(), errorMsg );
             }
             
             
-        } catch (ConstraintException e) {
+        } catch ( ConstraintException e ) {
             ErrorHandler.getInstance().reportError( e );
         }
         

@@ -55,8 +55,23 @@ public class RelationalExpr extends BinaryExpr {
         // Regra Variada: o resultado tem que ser do tipo Boolean.
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
-                    
-        // sua implementação aqui
+        
+        try {
+            
+            this.getLeftOperand().checkConstraints();
+            this.getRightOperand().checkConstraints();
+
+            if ( this.getLeftOperand().getType() != this.getRightOperand().getType() ){
+                throw error( this.getPosition(), "MENSAGEM DE ERRO" );
+            }
+            
+            if ( this.getLeftOperand().getType() != Type.Integer && this.getLeftOperand().getType() != Type.Char && this.getLeftOperand().getType() != Type.Boolean ){  //n sei o tipo escalar
+                throw error( this.getPosition(), "MENSAGEM DE ERRO" );
+            }
+            
+        } catch ( ConstraintException e ){
+            ErrorHandler.getInstance().reportError( e );
+        }
 
         // </editor-fold>
 

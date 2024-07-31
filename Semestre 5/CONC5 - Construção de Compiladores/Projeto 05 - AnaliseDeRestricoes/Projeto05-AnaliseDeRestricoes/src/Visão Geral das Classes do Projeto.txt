@@ -52,10 +52,10 @@ No pacote edu.citadel.cprl.ast
   Declaration.java    
 * DeclarativePart.java       -> Não precisa mexer por enquanto
   ElsifPart    
-* ExitStmt.java              -> Implementar o método checkConstraints()
+* ExitStmt.java              -> Implementar o método checkConstraints()x
   Expression.java    
   FunctionCall.java    
-* FunctionDecl.java          -> Implementar o método checkConstraints()
+* FunctionDecl.java          -> Implementar o método checkConstraints()x
   IfStmt.java    
   InitialDecl.java    
   LogicalExpr.java    
@@ -67,11 +67,11 @@ No pacote edu.citadel.cprl.ast
 * NotExpr.java               -> Implementar o método checkConstraints()x
   OutputStmt.java    
   ParameterDecl.java    
-* ProcedureCallStmt.java     -> Implementar o método checkConstraints()
+* ProcedureCallStmt.java     -> Implementar o método checkConstraints()x
 * ProcedureDecl.java         -> Não precisa mexer por enquanto
   Program.java    
 * ReadStmt.java              -> Implementar o método checkConstraints()x
-* RelationalExpr.java        -> Implementar o método checkConstraints()
+* RelationalExpr.java        -> Implementar o método checkConstraints()x
 * ReturnStmt.java            -> Implementar o método checkConstraints()
   SingleVarDecl.java    
   Statement.java    

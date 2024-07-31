@@ -105,13 +105,25 @@ public class FunctionDecl extends SubprogramDecl {
                 this.getStatementPart().checkConstraints();
             }
             
-            for( ParameterDecl param : this.getFormalParams() ) {
-                if ( param.isVarParam() ) {
-                    throw error( param.getPosition(), "ALGUM ERRO" ); //MENSAGEM ERRADA
-                }    
+            for ( InitialDecl decl : this.getInitialDecls() ) {
+                decl.checkConstraints();
             }
             
-            //VERIFICAR REGRA 2
+            for( ParameterDecl param : this.getFormalParams() ) {
+                
+                param.checkConstraints();
+                
+                if ( param.isVarParam() ) {
+                    throw error( param.getPosition(), "ALGUM ERRO" ); //MENSAGEM ERRADA
+                }
+
+            }
+            
+            if ( !this.hasReturnStmt( this.getStatementPart().getStatements() ) ) {
+                throw error( this.getPosition(), "ALGUM ERRO" );  //MENSAGEM ERRADA
+            }
+            
+            getStatementPart().checkConstraints();
             
         } catch ( ConstraintException e ){
             ErrorHandler.getInstance().reportError( e );

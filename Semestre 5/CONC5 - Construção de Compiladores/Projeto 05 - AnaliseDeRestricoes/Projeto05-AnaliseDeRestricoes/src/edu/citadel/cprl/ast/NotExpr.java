@@ -42,10 +42,8 @@ public class NotExpr extends UnaryExpr {
             this.getOperand().checkConstraints();
             
             if ( this.getOperand().getType() != Type.Boolean ) {
-                throw error( this.getOperand().getPosition(), "MENSAGEM DE ERRO" );
+                throw error( this.getOperand().getPosition(), "MENSAGEM DE ERRO" ); //MENSAGEM ERRADA
             }
-            
-            //N SEI DE TEM QUE TRATAR A REGRA VARIADA
             
         } catch ( ConstraintException e ){
             ErrorHandler.getInstance().reportError( e );

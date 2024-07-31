@@ -67,22 +67,28 @@ public class ProcedureCallStmt extends Statement {
             if ( this.actualParams.size() != this.procDecl.getFormalParams().size() ) {
                 throw error( this.procId.getPosition(), "Incorrect number of actual parameters." );
             }
-            
-            Iterator<Expression> iterActual = this.actualParams.iterator();
-            Iterator<ParameterDecl> iterFormal = this.procDecl.getFormalParams().iterator();
 
-            while ( iterActual.hasNext() ) {
-                Expression expr = iterActual.next();
-                ParameterDecl param = iterFormal.next();
-
-                if ( !matchTypes( expr.getType(), param.getType() ) ) {
+            for ( int i=0; i<this.actualParams.size(); i++ ) {
+                
+                if ( !matchTypes( this.actualParams.get(i).getType(), this.procDecl.getFormalParams().get(i).getType() ) ) {
                     String errorMsg = "Parameter type mismatch.";
-                    throw error( expr.getPosition(), errorMsg );
+                    throw error( this.actualParams.get(i).getPosition(), errorMsg );
                 }
+                
+                if ( this.procDecl.getFormalParams().get(i).isVarParam() ) {
+                    
+                    if ( this.actualParams.get(i) instanceof NamedValue ) {
+                        
+                        Expression namedToVar = new Variable( (NamedValue) this.actualParams.get(i) );
+                        this.actualParams.set(i, namedToVar);
+                        
+                    } else {
+                        throw error( this.actualParams.get(i).getPosition(), "MENSAGEM DE ERRO" );
+                    }
+                    
+                }
+                
             }
-            
-            //TRATAR A REGRA VARIADA
-            
             
         } catch ( ConstraintException e ) {
             ErrorHandler.getInstance().reportError( e );

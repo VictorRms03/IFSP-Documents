@@ -58,7 +58,20 @@ public class ReturnStmt extends Statement {
         
         // <editor-fold defaultstate="collapsed" desc="Implementação">
                     
-        // sua implementação aqui
+        try {
+            
+            if ( this.returnExpr != null ) {
+                
+                this.returnExpr.checkConstraints();
+                
+                if ( this.returnExpr.getType() != this.getSubprogramDecl().getType() ) {
+                    throw error( this.getReturnPosition(), "MENSAGEM DE ERRO" );
+                }
+            }
+            
+        } catch ( ConstraintException e ) {
+            
+        }
 
         // </editor-fold>
         

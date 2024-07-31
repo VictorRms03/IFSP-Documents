@@ -52,14 +52,11 @@ public class ExitStmt extends Statement {
                 this.whenExpr.checkConstraints();
                 
                 if ( this.whenExpr.getType() != Type.Boolean ){
-                    String errorMsg = "An \"when\" condition should have type Boolean.";
+                    String errorMsg = "An \"when\" condition should have type Boolean."; //MENSAGEM DE ERRO DEVE ESTAR ERRADA
                     throw error( this.whenExpr.getPosition(), errorMsg );
                 }
                 
             }
-            
-            //VERIFICAR A REGRA VARIADA
-            
             
         } catch ( ConstraintException e ) {
             ErrorHandler.getInstance().reportError( e );
