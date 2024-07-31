@@ -84,7 +84,7 @@ public class LoopStmt extends Statement {
                 this.whileExpr.checkConstraints();
                 
                 if ( this.whileExpr.getType() != Type.Boolean ) {
-                    String errorMsg = "An \"when\" condition should have type Boolean."; //MENSAGEM ERRADA
+                    String errorMsg = "The \"while\" expression should have type Boolean.";
                     throw error( this.whileExpr.getPosition(), errorMsg );
                 }
                 

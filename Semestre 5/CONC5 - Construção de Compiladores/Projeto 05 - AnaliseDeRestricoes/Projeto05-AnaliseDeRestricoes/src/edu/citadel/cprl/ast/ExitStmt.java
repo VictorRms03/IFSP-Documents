@@ -45,18 +45,18 @@ public class ExitStmt extends Statement {
                     
         try {
             
-            this.loopStmt.checkConstraints();
-            
             if ( this.whenExpr != null ) {
                 
-                this.whenExpr.checkConstraints();
-                
                 if ( this.whenExpr.getType() != Type.Boolean ){
-                    String errorMsg = "An \"when\" condition should have type Boolean."; //MENSAGEM DE ERRO DEVE ESTAR ERRADA
+                    String errorMsg = "The \"when\" expression should have type Boolean.";
                     throw error( this.whenExpr.getPosition(), errorMsg );
                 }
                 
+                this.whenExpr.checkConstraints();
+                
             }
+            
+            this.loopStmt.checkConstraints();
             
         } catch ( ConstraintException e ) {
             ErrorHandler.getInstance().reportError( e );

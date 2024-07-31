@@ -37,9 +37,8 @@ public class ReadStmt extends Statement {
             
             this.variable.checkConstraints();
             
-            //A PARTE DO ArrayType deve estar errada
             if ( !( this.variable.getType() == Type.Integer || this.variable.getType() == Type.Char || this.variable.getType() instanceof ArrayType ) ) {
-                throw error( this.variable.getPosition(), "MENSAGEM DE ERRO" ); //MENSAGEM ERRADA
+                throw error( this.variable.getPosition(), "Input supported only for integers and characters." );
             }
             
         } catch ( ConstraintException e ) {

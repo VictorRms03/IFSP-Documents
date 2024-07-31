@@ -62,11 +62,11 @@ public class RelationalExpr extends BinaryExpr {
             this.getRightOperand().checkConstraints();
 
             if ( this.getLeftOperand().getType() != this.getRightOperand().getType() ){
-                throw error( this.getPosition(), "MENSAGEM DE ERRO" );
+                throw error( this.getPosition(), "Type mismatch for left and right operands of a relational expression." );
             }
             
-            if ( this.getLeftOperand().getType() != Type.Integer && this.getLeftOperand().getType() != Type.Char && this.getLeftOperand().getType() != Type.Boolean ){  //n sei o tipo escalar
-                throw error( this.getPosition(), "MENSAGEM DE ERRO" );
+            if ( this.getLeftOperand().getType() != Type.Integer && this.getLeftOperand().getType() != Type.Char && this.getLeftOperand().getType() != Type.Boolean ) {
+                throw error( this.getPosition(), "Type of operands not permitted for a relational expression." );
             }
             
         } catch ( ConstraintException e ){

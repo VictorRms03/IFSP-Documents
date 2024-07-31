@@ -65,14 +65,13 @@ public class ProcedureCallStmt extends Statement {
             this.procDecl.checkConstraints();
             
             if ( this.actualParams.size() != this.procDecl.getFormalParams().size() ) {
-                throw error( this.procId.getPosition(), "Incorrect number of actual parameters." );
+                throw error( this.procId.getPosition(), "ERRO ProcedureCallStmt" );
             }
 
             for ( int i=0; i<this.actualParams.size(); i++ ) {
                 
                 if ( !matchTypes( this.actualParams.get(i).getType(), this.procDecl.getFormalParams().get(i).getType() ) ) {
-                    String errorMsg = "Parameter type mismatch.";
-                    throw error( this.actualParams.get(i).getPosition(), errorMsg );
+                    throw error( this.actualParams.get(i).getPosition(), "Parameter type mismatch." );
                 }
                 
                 if ( this.procDecl.getFormalParams().get(i).isVarParam() ) {
@@ -83,7 +82,7 @@ public class ProcedureCallStmt extends Statement {
                         this.actualParams.set(i, namedToVar);
                         
                     } else {
-                        throw error( this.actualParams.get(i).getPosition(), "MENSAGEM DE ERRO" );
+                        throw error( this.actualParams.get(i).getPosition(), "Expression for a var parameter must be a variable." );
                     }
                     
                 }

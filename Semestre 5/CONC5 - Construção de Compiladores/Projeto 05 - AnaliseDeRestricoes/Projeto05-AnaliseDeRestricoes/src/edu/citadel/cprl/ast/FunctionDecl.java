@@ -114,13 +114,13 @@ public class FunctionDecl extends SubprogramDecl {
                 param.checkConstraints();
                 
                 if ( param.isVarParam() ) {
-                    throw error( param.getPosition(), "ALGUM ERRO" ); //MENSAGEM ERRADA
+                    throw error( param.getPosition(), "A function cannot have var parameters." );
                 }
 
             }
             
             if ( !this.hasReturnStmt( this.getStatementPart().getStatements() ) ) {
-                throw error( this.getPosition(), "ALGUM ERRO" );  //MENSAGEM ERRADA
+                throw error( this.getPosition(), "A function must have at least one return statement." );
             }
             
             getStatementPart().checkConstraints();

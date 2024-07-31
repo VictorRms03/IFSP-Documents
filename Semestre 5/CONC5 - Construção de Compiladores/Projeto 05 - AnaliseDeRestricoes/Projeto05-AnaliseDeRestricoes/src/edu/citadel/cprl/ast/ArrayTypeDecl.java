@@ -40,13 +40,13 @@ public class ArrayTypeDecl extends InitialDecl {
             
             numElements.checkConstraints();
         
-            if ( numElements.getType() == Type.Integer ){
-                String errorMsg = "numElements for constValue should have type Integer."; //MENSAGEM DE ERRO DEVE ESTAR ERRADA
+            if ( numElements.getType() != Type.Integer ){
+                String errorMsg = "numElements for constValue should have type Integer.";
                 throw error( numElements.getPosition(), errorMsg );
             }
             
             if ( numElements.getLiteralIntValue() <= 0 ) {
-                String errorMsg = "numElements should be positive."; //MENSAGEM DE ERRO DEVE ESTAR ERRADA
+                String errorMsg = "numElements should be positive.";
                 throw error( numElements.getPosition(), errorMsg );
             }
             

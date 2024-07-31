@@ -42,7 +42,7 @@ public class NotExpr extends UnaryExpr {
             this.getOperand().checkConstraints();
             
             if ( this.getOperand().getType() != Type.Boolean ) {
-                throw error( this.getOperand().getPosition(), "MENSAGEM DE ERRO" ); //MENSAGEM ERRADA
+                throw error( this.getOperand().getPosition(), "Expression following \"not\" operator is not a Boolean expression." );
             }
             
         } catch ( ConstraintException e ){
