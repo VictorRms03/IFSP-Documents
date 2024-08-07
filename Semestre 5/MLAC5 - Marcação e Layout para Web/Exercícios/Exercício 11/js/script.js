@@ -29,11 +29,11 @@ $( document ).ready( function() {
     $("#changeStyleButton").click( function() {
 
         if( $("#title").hasClass("class1") ) {
-            $("#title").removeClass("class1")
-            $("#title").addClass("class2")
+            $("#title").removeClass("class1");
+            $("#title").addClass("class2");
         } else {
-            $("#title").removeClass("class2")
-            $("#title").addClass("class1")
+            $("#title").removeClass("class2");
+            $("#title").addClass("class1");
         }
 
         
