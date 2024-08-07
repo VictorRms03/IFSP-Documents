@@ -1,17 +1,68 @@
-/* Add a gray background color and some padding to the footer */
-footer {
-    background-color: #f2f2f2;
-    padding: 25px;
+@import url('https://fonts.googleapis.com/css2?family=Belleza&display=swap');
+
+.navbar {
+    margin-bottom: 50px;
+    border-radius: 0;
+}
+  
+.jumbotron {
+    margin: 0;
+    padding: 0;
+    background-color: white;
 }
 
-.carousel-inner img {
-    width: 100%; /* Set width to 100% */
-    min-height: 200px;
+.container-baixo {
+    justify-content: center;
+    display: flex;
 }
 
-/* Hide the carousel text when the screen is less than 600 pixels wide */
-@media (max-width: 600px) {
-    .carousel-caption {
-        display: none; 
-    }
+.navbar-inverse {
+    background-color: #0e387a;
+}
+
+.panel-primary>.panel-heading {
+    font-weight: bold;
+    color: #0e387a;
+    background-color: #a2c9d3;
+    border-color: #a2c9d3;
+    text-align: center;
+    font-family: Belleza;
+    font-size: 16px;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #fff;
+    background-color: #0e387a;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    font-family: Belleza;
+    font-size: 18px;
+    border-color: #0e387a;
+}
+
+a:hover { 
+    text-decoration: none; 
+}
+
+.panel-footer {
+    color: #0e387a;
+    text-align: center;
+    font-weight: bold;
+}
+
+.titulo{
+    color: #0e387a;
+    font-family: Belleza;
+    font-size: 40px;
+}
+
+.informaçoes{
+    font-family: Belleza;
+    font-size: 20px;
+}
+
+.tamanhos{
+    font-family: Belleza;
+    font-size: 20px;
 }
