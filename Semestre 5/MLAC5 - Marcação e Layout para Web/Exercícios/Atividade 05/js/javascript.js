@@ -54,3 +54,9 @@ function toggleStyleOfTitle() {
     }
     
 }
+
+document.getElementById('eyeicon').onclick = function() {
+
+    
+
+}
