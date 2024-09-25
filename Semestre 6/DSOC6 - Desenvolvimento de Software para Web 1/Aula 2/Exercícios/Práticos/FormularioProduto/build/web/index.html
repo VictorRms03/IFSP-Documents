@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulario Produto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <h1>Dados de um Produto</h1>
+        
+        <form action="formularioProduto" method="POST">
+            
+            <label>Código de Barras: </label>
+            <input type="text" name="codBarras" size="20">
+            <br />
+
+            <label>Descrição: </label>
+            <input type="text" name="descricao" size="20">
+            <br />
+
+            <label>Unidade de Medida: </label>
+            <input type="radio" name="unidadeMedida" value="kg">
+            <input type="radio" name="unidadeMedida" value="unidade">
+            <br />
+
+            <label>Quantidade por Embalagem: </label>
+            <input type="number" name="qntdEmbalagem">
+            <br />
+
+            <label>Fabricante (nome): </label>
+            <input type="text" name="fabricante" size="20">
+            <br />
+
+            <input type="submit" value="Enviar Dados">
+            
+        </form>
+        
+    </body>
+</html>
