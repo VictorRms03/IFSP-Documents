@@ -2,9 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package tamanhoString.servlets;
+package formularioMaior.servlets;
 
+import entidades.Formulario;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author victo
  */
-@WebServlet(name = "TamanhoStringServlet", urlPatterns = {"/TamanhoString"})
-public class TamanhoStringServlet extends HttpServlet {
+@WebServlet(name = "ProcessaDadosClienteServlet", urlPatterns = {"/ProcessaDadosCliente"})
+public class ProcessaDadosClienteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,16 +32,47 @@ public class TamanhoStringServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         
-        String str = request.getParameter("string");
+        request.setCharacterEncoding( "UTF-8" );
         
-        System.out.println("Tamanho da String: " + str.length() );
+        String nome = request.getParameter( "nome" );
+        String sobrenome = request.getParameter( "sobrenome" );
+        String cpf = request.getParameter( "cpf" );
+        String dataNascimento = request.getParameter( "dataNasc" );
+        String sexo = request.getParameter( "sexo" );
+        String observacoes = request.getParameter( "observacoes" );
+        String email = request.getParameter( "email" );
+        String logradouro = request.getParameter( "logradouro" );
+        String numero = request.getParameter( "numero" );
+        String complemento = request.getParameter( "complemento" );
+        String cidade = request.getParameter( "cidade" );
+        String estado = request.getParameter( "estado" );
+        String cep = request.getParameter( "cep" );
+        String temFilhos = request.getParameter( "filhos" );
         
-        /* RESPOSTA DA PERGUNTA TEÓRICA: Deve-se ser enviado com o método "POST" 
-        pois, por se tratar de uma String muito grande, pode ocorrer erros ao envia-lá
-        pela URL */
-
+        Formulario formulario = new Formulario();
+        
+        formulario.setNome(nome);
+        formulario.setSobrenome(sobrenome);
+        formulario.setCpf(cpf);
+        formulario.setDataNasc(dataNascimento);
+        formulario.setSexo(sexo);
+        formulario.setObservacoes(observacoes);
+        formulario.setEmail(email);
+        formulario.setLogradouro(logradouro);
+        formulario.setNumero(numero);
+        formulario.setComplemento(complemento);
+        formulario.setCidade(cidade);
+        formulario.setEstado(estado);
+        formulario.setCep(cep);
+        formulario.setFilhos(temFilhos);
+        
+        request.setAttribute("formularioObtido", formulario);
+        
+        RequestDispatcher disp = request.getRequestDispatcher( "exibeFormulario.jsp" );
+        
+        disp.forward( request, response );
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

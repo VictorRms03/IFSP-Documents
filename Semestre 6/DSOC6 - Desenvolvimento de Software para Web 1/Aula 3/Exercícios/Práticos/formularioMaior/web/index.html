@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Formulário Incrementado</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <h1>Dados Pessoais do Cliente</h1>
+
+        <form action="ProcessaDadosCliente" method="GET">
+            
+            <label>Nome: </label>
+            <input type="text" name="nome" size="20"/>
+            <br />
+            
+            <label>Sobrenome: </label>
+            <input type="text" name="sobrenome" size="20"/>
+            <br />
+            
+            <label>CPF: </label>
+            <input type="text" name="cpf" size="15"/>
+            <br />
+            
+            <label>Data de Nascimento: </label>
+            <input type="date" name="dataNasc"/>
+            <br />
+
+            <label>Sexo: </label>
+            <input type="radio" name="sexo" value="M"/> Masculino
+            <input type="radio" name="sexo" value="F"/> Feminino
+            <br />
+
+            <label>Observações: </label>
+            <br />
+            <textarea cols="40" rows="10" name="observacoes"></textarea>
+            <br />
+
+            <label>E-mail: </label>
+            <input type="email" name="email">
+            <br />
+
+            <label>Logradouro: </label>
+            <input type="text" name="logradouro">
+            <br />
+
+            <label>Numero: </label>
+            <input type="text" name="numero">
+            <br />
+
+            <label>Complemento: </label>
+            <input type="text" name="complemento">
+            <br />
+
+            <label>Cidade: </label>
+            <input type="text" name="cidade">
+            <br />
+
+            <label>Estado: </label>
+            <input type="text" name="estado">
+            <br />
+
+            <label>CEP: </label>
+            <input type="text" name="cep">
+            <br />
+
+            <label>Você tem filhos? </label>
+            <input type="radio" name="filhos" value="Sim"> Sim
+            <input type="radio" name="filhos" value="Nao"> Não
+            <br />
+
+            <input type="submit" value="Enviar Dados">
+
+        </form>
+        
+    </body>
+</html>

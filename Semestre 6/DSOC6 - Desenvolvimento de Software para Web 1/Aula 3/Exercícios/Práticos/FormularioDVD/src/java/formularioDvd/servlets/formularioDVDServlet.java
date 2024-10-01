@@ -2,9 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package tamanhoString.servlets;
+package formularioDvd.servlets;
 
+import entidades.Dvd;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author victo
  */
-@WebServlet(name = "TamanhoStringServlet", urlPatterns = {"/TamanhoString"})
-public class TamanhoStringServlet extends HttpServlet {
+@WebServlet(name = "formularioDVDServlet", urlPatterns = {"/formularioDVD"})
+public class formularioDVDServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,16 +32,31 @@ public class TamanhoStringServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+       
+        request.setCharacterEncoding( "UTF-8" );
         
-        String str = request.getParameter("string");
+        String numero = request.getParameter( "numero" );
+        String titulo = request.getParameter( "titulo" );
+        String atorPrincipal = request.getParameter( "atorPrincipal" );
+        String atorCoadjuvante = request.getParameter( "atorCoadjuvante" );
+        String diretor = request.getParameter( "diretor" );
+        String anoLancamento = request.getParameter( "anoLancamento" );
         
-        System.out.println("Tamanho da String: " + str.length() );
+        Dvd dvd = new Dvd();
         
-        /* RESPOSTA DA PERGUNTA TEÓRICA: Deve-se ser enviado com o método "POST" 
-        pois, por se tratar de uma String muito grande, pode ocorrer erros ao envia-lá
-        pela URL */
-
+        dvd.setNumero(numero);
+        dvd.setTitulo(titulo);
+        dvd.setAtorPrincipal(atorPrincipal);
+        dvd.setAtorCoadjuvante(atorCoadjuvante);
+        dvd.setDiretor(diretor);
+        dvd.setAnoLancamento(anoLancamento);
+        
+        request.setAttribute("DVD", dvd);
+        
+        RequestDispatcher disp = request.getRequestDispatcher("exibeDVD.jsp");
+        
+        disp.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
