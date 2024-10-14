@@ -4,7 +4,9 @@ import java.util.Random;
 
 /**
  *
- * @author victo
+ * @author Victor Ramos
+ * @author Samuel Ferla Iamarino
+ * @author Vinicius Ramos Deramio
  */
 public class Loja {
 
