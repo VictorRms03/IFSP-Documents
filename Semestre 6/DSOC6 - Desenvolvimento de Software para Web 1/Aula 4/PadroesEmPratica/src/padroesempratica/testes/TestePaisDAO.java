@@ -4,9 +4,9 @@
  */
 package padroesempratica.testes;
 
-import padroesempratica.dao.FrutaDAO;
-import padroesempratica.entidades.Fruta;
 import java.sql.SQLException;
+import padroesempratica.dao.PaisDAO;
+import padroesempratica.entidades.Pais;
 
 /**
  *
@@ -16,17 +16,17 @@ public class TestePaisDAO {
     
     public static void main(String[] args) {
         
-        Fruta fruta = new Fruta();
+        Pais pais = new Pais();
         
-        fruta.setNome("Maca");
-        fruta.setCorPredominante("Vermelho");
+        pais.setNome("Brasil");
+        pais.setSigla("BR");
         
-        FrutaDAO dao = null;
+        PaisDAO dao = null;
         
         try {
             
-            dao = new FrutaDAO();
-            dao.salvar( fruta );
+            dao = new PaisDAO();
+            dao.salvar( pais );
             
         } catch ( SQLException exc ) {
             

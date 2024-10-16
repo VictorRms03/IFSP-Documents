@@ -37,7 +37,10 @@ public class Fruta {
     public void setCorPredominante(String corPredominante) {
         this.corPredominante = corPredominante;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Fruta{" + "id=" + id + ", nome=" + nome + ", corPredominante=" + corPredominante + '}';
+    }
     
 }
