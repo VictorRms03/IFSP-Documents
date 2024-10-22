@@ -49,6 +49,9 @@ lightSpot.target.position.set( 0, 0, 0 );
 scene.add(lightSpot);
 scene.add(lightSpot.target);
 
+/*ORBIT CONTROLS*/
+const controls = new OrbitControls( camera, renderer.domElement)
+
 function animate() {
 
 	cube.rotation.x += 0.01;
