@@ -1,0 +1,17 @@
+{
+  "name": "iluminacao",
+  "version": "1.0.0",
+  "description": "Teste Iluminacao no Three.js",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VictorRms",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.9"
+  }
+}
