@@ -104,6 +104,11 @@ public class ClientesServlet extends HttpServlet {
                     request.setAttribute("err", "Id de Estado enviado invalido");
                     disp = request.getRequestDispatcher("/formularios/cidades/erro.jsp");
                     
+                } else if ( isCpfRepetido( cpf ) ) {
+                    
+                    request.setAttribute("err", "CPF Já Cadastrado");
+                    disp = request.getRequestDispatcher("/formularios/cidades/erro.jsp");
+                    
                 } else {
                     
                     Cidade ci = new Cidade();
@@ -351,6 +356,25 @@ public class ClientesServlet extends HttpServlet {
         { return false; }
         
         return true;
+    }
+    
+    /**
+     * 
+     * @param cpf Cpf a ser verificado
+     * @return Retorna TRUE se o cpf já estiver cadastrado no banco
+     * @throws SQLException 
+     */
+    private boolean isCpfRepetido( String cpf ) throws SQLException {
+    
+        for ( Cliente cliente : new ClienteDAO().listarTodos() ){
+            
+            if ( cliente.getCpf().equals( cpf ) ){
+                return true;
+            }
+            
+        }
+        
+        return false;
     }
 
 }

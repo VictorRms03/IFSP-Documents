@@ -48,6 +48,11 @@ public class EstadosServlet extends HttpServlet {
                     request.setAttribute("err", "Tamanho de Sigla invalido");
                     disp = request.getRequestDispatcher("/formularios/estados/erro.jsp");
                     
+                } else if ( isSiglaRepetida( sigla ) ){
+                    
+                    request.setAttribute("err", "Sigla já Cadastrada");
+                    disp = request.getRequestDispatcher("/formularios/estados/erro.jsp");
+                    
                 } else {
                     
                     Estado e = new Estado();
@@ -142,6 +147,26 @@ public class EstadosServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "EstadosServlet";
+    }
+    
+    /**
+     * 
+     * @param sigla Sigla a ser verificado
+     * @return Retorna TRUE se a sigla já estiver cadastrada no banco
+     * @throws SQLException 
+     */
+    private boolean isSiglaRepetida( String sigla ) throws SQLException {
+        
+        for ( Estado estado : new EstadoDAO().listarTodos() ) {
+            
+            if ( estado.getSigla().equals( sigla ) ) {
+                return true;
+            }
+            
+        }
+
+        return false;
+        
     }
 
 }
