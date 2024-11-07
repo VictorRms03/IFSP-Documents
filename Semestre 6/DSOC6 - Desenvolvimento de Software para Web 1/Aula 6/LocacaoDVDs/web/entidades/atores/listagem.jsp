@@ -1,18 +1,19 @@
 <%-- 
-    Document   : index
-    Created on : 26 de out. de 2024, 22:07:54
+    Document   : listagem
+    Created on : 6 de nov. de 2024, 22:18:42
     Author     : Victor Ramos - BV3026191
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Locadora DVD's</title>
-        <link rel="stylesheet" href="css/style.css">
+        <title>Locadora DVD's - Listagem de Atores</title>
+        <link rel="stylesheet" href="${cp}/css/style.css">
 
     </head>
 
@@ -21,37 +22,37 @@
         <header>
             
             <a href="index.jsp"> 
-                <img src="images/dvdLogo.png" alt="" class="logo-img"> 
+                <img src="/images/dvdLogo.png" alt="" class="logo-img"> 
             </a>
 
 
             <div class="header-options">
                 <div>
-                    <a href="index.jsp"> Início </a>
+                    <a href="/index.jsp"> Início </a>
                 </div>
 
                 <hr>
 
                 <div>
-                    <a href="entidades/dvds/listagem.jsp"> DVD's </a>
+                    <a href="/entidades/dvds/listagem.jsp"> DVD's </a>
                 </div>
 
                 <hr>
 
                 <div>
-                    <a href="entidades/atores/listagem.jsp"> Atores </a>
+                    <a href="/entidades/atores/listagem.jsp"> Atores </a>
                 </div>
 
                 <hr>
 
                 <div>
-                    <a href="entidades/classificacoesEtarias/listagem.jsp"> Classificações Etárias </a>
+                    <a href="/entidades/classificacoesEtarias/listagem.jsp"> Classificações Etárias </a>
                 </div>
 
                 <hr>
 
                 <div>
-                    <a href="entidades/generos/listagem.jsp"> Gêneros </a>
+                    <a href="/entidades/generos/listagem.jsp"> Gêneros </a>
                 </div>
             </div>
 
@@ -71,9 +72,9 @@
                     
                     <h3>Conheça os Atores</h3>
 
-                    <img src="images/silhueta.png" alt="">
+                    <img src="/images/silhueta.png" alt="">
 
-                    <a href="entidades/atores/listagem.jsp" class="home-item-btn" >Clique Aqui!</a>
+                    <a href="/entidades/atores/listagem.jsp" class="home-item-btn" >Clique Aqui!</a>
                     
                 </div>
 
@@ -81,9 +82,9 @@
                     
                     <h3>Conheça os DVD's</h3>
 
-                    <img src="images/dvd.png" alt="">
+                    <img src="/images/dvd.png" alt="">
 
-                    <a href="entidades/dvds/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="/entidades/dvds/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
                     
                 </div>
 
@@ -95,9 +96,9 @@
                     
                     <h3>Entenda as Classificações Etarias</h3>
 
-                    <img src="images/classificacaoEtaria.jpg" alt="">
+                    <img src="/images/classificacaoEtaria.jpg" alt="">
 
-                    <a href="entidades/classificacoesEtarias/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="/entidades/classificacoesEtarias/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
                     
                 </div>
 
@@ -105,9 +106,9 @@
                     
                     <h3>Explore os Gêneros</h3>
 
-                    <img src="images/generos.png" alt="">
+                    <img src="/images/generos2.png" alt="">
 
-                    <a href="entidades/generos/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="/entidades/generos/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
                     
                 </div>
 
