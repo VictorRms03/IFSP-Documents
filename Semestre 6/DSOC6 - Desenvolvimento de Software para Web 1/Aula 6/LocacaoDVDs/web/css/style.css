@@ -1,13 +1,4 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 6 de nov. de 2024, 21:03:07
-    Author     : Victor Ramos
-*/
-
-/* BODY */
+/* GERAL */
 body {
     font-family: Georgia, serif;
     margin: 0;
@@ -16,6 +7,10 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+.page-title {
+    text-align: center;
 }
 
 /* CABEÇALHO */
@@ -55,11 +50,20 @@ header {
 
 }
 
-/* HOME */
+/* RODAPÉ */
 
-.home-title {
-    text-align: center;
+footer {
+    
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 3rem;
+
 }
+
+/* HOME */
 
 .home-item-row {
     
@@ -107,14 +111,13 @@ header {
 
 }
 
-/* RODAPÉ */
-footer {
+/* LISTAGEM */
+
+.listagem-div-table {
     
     display: flex;
-
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 
-    height: 3rem;
-
+    margin: 5rem 20rem;
 }

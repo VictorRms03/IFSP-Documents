@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 
@@ -60,7 +62,7 @@
 
         <main>
 
-            <div class="home-title">
+            <div class="page-title">
                 <h1>Locadora de DVD's</h1>
                 <p>A Locadora com o melhor atendimento!</p>
             </div>

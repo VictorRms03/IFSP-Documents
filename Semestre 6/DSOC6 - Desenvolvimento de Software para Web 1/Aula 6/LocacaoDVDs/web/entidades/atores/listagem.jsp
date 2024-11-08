@@ -1,10 +1,11 @@
 <%-- 
-    Document   : listagem
-    Created on : 6 de nov. de 2024, 22:18:42
+    Document   : index
+    Created on : 06 de nov. de 2024, 22:19:01
     Author     : Victor Ramos - BV3026191
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,7 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Locadora DVD's - Listagem de Atores</title>
+        <title>Locadora DVD's</title>
         <link rel="stylesheet" href="${cp}/css/style.css">
 
     </head>
@@ -21,38 +22,38 @@
         
         <header>
             
-            <a href="index.jsp"> 
-                <img src="/images/dvdLogo.png" alt="" class="logo-img"> 
+            <a href="${cp}/index.jsp"> 
+                <img src="${cp}/images/dvdLogo.png" alt="" class="logo-img"> 
             </a>
 
 
             <div class="header-options">
                 <div>
-                    <a href="/index.jsp"> Início </a>
+                    <a href="${cp}/index.jsp"> Início </a>
                 </div>
 
                 <hr>
 
                 <div>
-                    <a href="/entidades/dvds/listagem.jsp"> DVD's </a>
+                    <a href="${cp}/entidades/dvds/listagem.jsp"> DVD's </a>
                 </div>
 
                 <hr>
 
                 <div>
-                    <a href="/entidades/atores/listagem.jsp"> Atores </a>
+                    <a href="${cp}/entidades/atores/listagem.jsp"> Atores </a>
                 </div>
 
                 <hr>
 
                 <div>
-                    <a href="/entidades/classificacoesEtarias/listagem.jsp"> Classificações Etárias </a>
+                    <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp"> Classificações Etárias </a>
                 </div>
 
                 <hr>
 
                 <div>
-                    <a href="/entidades/generos/listagem.jsp"> Gêneros </a>
+                    <a href="${cp}/entidades/generos/listagem.jsp"> Gêneros </a>
                 </div>
             </div>
 
@@ -61,58 +62,66 @@
 
         <main>
 
-            <div class="home-title">
-                <h1>Locadora de DVD's</h1>
-                <p>A Locadora com o melhor atendimento!</p>
+            <div class="page-title">
+                <h1>Atores</h1>
+                <p>Conheça os atores mais famosos para de ser na telinha!</p>
             </div>
 
-            <div class="home-item-row">
+            <div class="listagem-div-table">
 
-                <div class="home-item-box">
-                    
-                    <h3>Conheça os Atores</h3>
+                <table>
 
-                    <img src="/images/silhueta.png" alt="">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Sobrenome</th>
+                            <th>Data de Estréia</th>
+                        </tr>
+                    </thead>
 
-                    <a href="/entidades/atores/listagem.jsp" class="home-item-btn" >Clique Aqui!</a>
-                    
-                </div>
+                    <tbody>
 
-                <div class="home-item-box">
-                    
-                    <h3>Conheça os DVD's</h3>
+                        <jsp:useBean id="servicos" scope="page" class="locacaodvds.servicos.AtoresServices"/>
+                
+                        <c:forEach items="${servicos.todos}" var="ator">
 
-                    <img src="/images/dvd.png" alt="">
+                            <tr>
 
-                    <a href="/entidades/dvds/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
-                    
-                </div>
+                                <td>${ator.id}</td>
+                                <td>${ator.nome}</td>
+                                <td>${ator.sobrenome}</td>
+                                <td>${ator.dataEstreia}</td>
+
+                                <td>
+                                    <a href="${cp}/entidades/atores/alterar.jsp">
+                                        Alterar
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="${cp}/entidades/atores/excluir.jsp">
+                                        Excluir
+                                    </a>
+                                </td>
+
+                            </tr>
+
+                        </c:forEach>
+                      </tbody>
+
+                </table>
 
             </div>
 
-            <div class="home-item-row">
+            <div class="listagem-div-options">
 
-                <div class="home-item-box">
-                    
-                    <h3>Entenda as Classificações Etarias</h3>
-
-                    <img src="/images/classificacaoEtaria.jpg" alt="">
-
-                    <a href="/entidades/classificacoesEtarias/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
-                    
-                </div>
-
-                <div class="home-item-box">
-                    
-                    <h3>Explore os Gêneros</h3>
-
-                    <img src="/images/generos2.png" alt="">
-
-                    <a href="/entidades/generos/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
-                    
-                </div>
+                <a href="">Adicionar</a>
 
             </div>
+
+
+
 
         </main>
 
