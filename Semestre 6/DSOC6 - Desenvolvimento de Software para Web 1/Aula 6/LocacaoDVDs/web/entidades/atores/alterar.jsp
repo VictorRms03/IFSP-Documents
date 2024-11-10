@@ -68,25 +68,66 @@
 
             <div class="alterar-div-form">
 
-                <form action="" style="display: flex; flex-direction: column;">
+                <form method="POST" action="${cp}/processaAtores" class="alterar-form">
 
-                    <div>
-                        <label for="nome">Nome: </label>
-                        <input type="text" name="nome" id="nome" placeholder="NOME">
-                    </div>
-                    
-                    <div>
-                        <label for="sobrenome">Sobrenome: </label>
-                        <input type="text" name="sobrenome" id="sobrenome" placeholder="SOBRENOME">
-                    </div>
-                    
-                    <div>
-                        <label for="dataEstreia">Data de Estréia: </label>
-                        <input type="date" name="dataEstreia" id="dataEstreia" placeholder="DATA-ESTREIA">
-                    </div>
-                    
+                    <input type="hidden" name="id" value="${requestScope.ator.id}">
+                    <input type="hidden" name="acao" value="alterar">
 
-                    <input type="submit" value="Confirmar Alteração">
+                    <table>
+
+                        <thead>
+
+                            <th colspan="3">Alterar ${requestScope.ator.nome} ${requestScope.ator.sobrenome} - ID: ${requestScope.ator.id} </th>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td colspan="2">
+                                    <input type="submit" value="Confirmar Alteração">
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td> 
+                                    <label for="nome">Nome: </label>
+                                </td>
+
+                                <td>
+                                    <input type="text" name="nome" id="nome" value="${requestScope.ator.nome}">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> 
+                                    <label for="sobrenome">Sobrenome: </label>
+                                </td>
+
+                                <td>
+                                    <input type="text" name="sobrenome" id="sobrenome" value="${requestScope.ator.sobrenome}">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> 
+                                    <label for="dataEstreia">Data de Estreia: </label>
+                                </td>
+
+                                <td>
+                                    <input type="date" name="dataEstreia" id="dataEstreia" value="${requestScope.ator.dataEstreia}">
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="2">
+                                    <input type="submit" value="Confirmar Alteração">
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
 
                 </form>
 
@@ -94,12 +135,10 @@
 
             <div class="alterar-div-options">
 
-                <a href="">Voltar</a>
+                
+                <a href="${cp}/entidades/atores/listagem.jsp">Voltar</a>
 
             </div>
-
-
-
 
         </main>
 

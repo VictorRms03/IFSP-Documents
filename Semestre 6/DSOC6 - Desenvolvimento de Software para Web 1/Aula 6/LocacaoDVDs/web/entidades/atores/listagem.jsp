@@ -64,7 +64,7 @@
 
             <div class="page-title">
                 <h1>Atores</h1>
-                <p>Conheça os atores mais famosos para de ser na telinha!</p>
+                <p>Conheça os atores mais famosos para se ver na telinha!</p>
             </div>
 
             <div class="listagem-div-table">
@@ -76,7 +76,9 @@
                             <th>Id</th>
                             <th>Nome</th>
                             <th>Sobrenome</th>
-                            <th>Data de Estréia</th>
+                            <th>Data de Estreia</th>
+                            <th>Alterar</th>
+                            <th>Excluir</th>
                         </tr>
                     </thead>
 
@@ -94,13 +96,13 @@
                                 <td>${ator.dataEstreia}</td>
 
                                 <td>
-                                    <a href="${cp}/entidades/atores/alterar.jsp">
+                                    <a href="${cp}/processaAtores?acao=prepararAlteracao&id=${ator.id}">
                                         Alterar
                                     </a>
                                 </td>
 
                                 <td>
-                                    <a href="${cp}/entidades/atores/excluir.jsp">
+                                    <a href="${cp}/processaAtores?acao=prepararExclusao&id=${ator.id}">
                                         Excluir
                                     </a>
                                 </td>
@@ -116,7 +118,7 @@
 
             <div class="listagem-div-options">
 
-                <a href="">Adicionar</a>
+                <a href="${cp}/entidades/atores/adicionar.jsp">Adicionar</a>
 
             </div>
 

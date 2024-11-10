@@ -57,10 +57,10 @@ public class AtorDAO extends DAO<Ator> {
     }
 
     @Override
-    public void excluir(Ator obj) throws SQLException {
+    public void excluir( Ator obj ) throws SQLException {
         
         PreparedStatement stmt = getConnection().prepareStatement(
-                "DELETE FROM genero " +
+                "DELETE FROM ator " +
                 "WHERE id = ?;" );
         
         stmt.setInt( 1, obj.getId() );
