@@ -22,41 +22,23 @@
         
         <header>
             
-            <a href="${cp}/index.jsp"> 
-                <img src="${cp}/images/dvdLogo.png" alt="" class="logo-img"> 
-            </a>
-
-
-            <div class="header-options">
-                <div>
-                    <a href="${cp}/index.jsp"> Início </a>
-                </div>
-
-                <hr>
-
-                <div>
-                    <a href="${cp}/entidades/dvds/listagem.jsp"> DVD's </a>
-                </div>
-
-                <hr>
-
-                <div>
-                    <a href="${cp}/entidades/atores/listagem.jsp"> Atores </a>
-                </div>
-
-                <hr>
-
-                <div>
-                    <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp"> Classificações Etárias </a>
-                </div>
-
-                <hr>
-
-                <div>
-                    <a href="${cp}/entidades/generos/listagem.jsp"> Gêneros </a>
-                </div>
-            </div>
-
+            <nav class="navbar">
+                
+                <a href="${cp}/index.jsp" class="navbar-logo">
+                    <img src="${cp}/images/dvdLogo.png" alt="" class="logo-img">
+                </a>
+                
+                <ul class="navbar-links">
+                    
+                    <li> <a href="${cp}/index.jsp">Início</a> </li>
+                    <li> <a href="${cp}/entidades/dvds/listagem.jsp">DVD's</a> </li>
+                    <li> <a href="${cp}/entidades/atores/listagem.jsp">Atores</a> </li>
+                    <li> <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp">Classificações Etárias</a> </li>
+                    <li> <a href="${cp}/entidades/generos/listagem.jsp">Gêneros</a> </li>
+                    
+                </ul>
+                
+            </nav>
 
         </header>
 
@@ -66,9 +48,9 @@
                 <h1>Adicionar Ator</h1>
             </div>
 
-            <div class="alterar-div-form">
+            <div class="div-form">
 
-                <form method="POST" action="${cp}/processaAtores" class="alterar-form">
+                <form method="POST" action="${cp}/processaAtores" class="form-personalizado">
 
                     <input type="hidden" name="acao" value="adicionar">
 
@@ -132,17 +114,14 @@
 
             </div>
 
-            <div class="alterar-div-options">
-
-                
-                <a href="${cp}/entidades/atores/listagem.jsp">Voltar</a>
-
+            <div class="div-form-options">
+                <a href="${cp}/entidades/atores/listagem.jsp" class="button">Voltar</a>
             </div>
 
         </main>
 
-        <footer>
-            <span>Victor Ramos - Instituto Federal de São Paulo @ 2024</span>
+        <footer class="footer">
+            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
         </footer>
 
     </body>

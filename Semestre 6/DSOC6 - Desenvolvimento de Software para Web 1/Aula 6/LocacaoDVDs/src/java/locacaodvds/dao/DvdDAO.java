@@ -120,11 +120,11 @@ public class DvdDAO extends DAO<Dvd> {
                 "WHERE d.ator_principal_id = ap.id AND "
                         + "d.ator_coadjuvante_id = ac.id AND "
                         + "d.classificacao_etaria_id = ce.id AND "
-                        + "d.genero_id = g.id" +
-                "ORDER BY dvd.titulo, "
-                        + "dvd.ano_lancamento, "
+                        + "d.genero_id = g.id " +
+                "ORDER BY d.titulo, "
+                        + "d.ano_lancamento, "
                         + "g.id, "
-                        + "dvd.duracao_minutos ;" );
+                        + "d.duracao_minutos ;" );
         
         ResultSet rs = stmt.executeQuery();
         

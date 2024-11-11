@@ -126,7 +126,6 @@ public class processaDvds extends HttpServlet {
                 
                 Dvd dvd = new Dvd();
                 
-                dvd.setId( Integer.parseInt( request.getParameter( "id" ) ) );
                 dvd.setTitulo( request.getParameter( "titulo" ) );
                 dvd.setAnoLancamento( Integer.parseInt( request.getParameter("anoLancamento") ) );
                 dvd.setDataLancamento( Date.valueOf( LocalDate.parse( request.getParameter( "dataLancamento" ) , 

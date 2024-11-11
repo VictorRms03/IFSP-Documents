@@ -12,15 +12,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
-import locacaodvds.dao.ClassificacaoEtariaDAO;
-import locacaodvds.entidades.ClassificacaoEtaria;
+import locacaodvds.dao.GeneroDAO;
+import locacaodvds.entidades.Genero;
 
 /**
  *
  * @author victo
  */
-@WebServlet(name = "processaClassificacoesEtarias", urlPatterns = {"/processaClassificacoesEtarias"})
-public class processaClassificacoesEtarias extends HttpServlet {
+@WebServlet(name = "processaGeneros", urlPatterns = {"/processaGeneros"})
+public class processaGeneros extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,62 +36,63 @@ public class processaClassificacoesEtarias extends HttpServlet {
         
         String acao = request.getParameter( "acao" );
         
-        ClassificacaoEtariaDAO dao = null;
+        GeneroDAO dao = null;
         
         RequestDispatcher dispatcher = null;
         
         try {
             
-            dao = new ClassificacaoEtariaDAO();
+            dao = new GeneroDAO();
             
             if ( acao.equals( "prepararAlteracao" ) ) {
             
                 int id = Integer.parseInt( request.getParameter( "id" ) );
-                ClassificacaoEtaria classificacaoEtaria = dao.obterPorId( id );
+                Genero genero = dao.obterPorId( id );
 
-                request.setAttribute( "classificacaoEtaria", classificacaoEtaria );
+                request.setAttribute( "genero", genero );
 
-                dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/alterar.jsp" );
+                dispatcher = request.getRequestDispatcher( "/entidades/generos/alterar.jsp" );
             
             } else if ( acao.equals( "prepararExclusao" ) ) {
                 
                 int id = Integer.parseInt( request.getParameter( "id" ) );
-                ClassificacaoEtaria classificacaoEtaria = dao.obterPorId( id );
+                Genero genero = dao.obterPorId( id );
 
-                request.setAttribute( "classificacaoEtaria", classificacaoEtaria );
+                request.setAttribute( "genero", genero );
 
-                dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/excluir.jsp" );
+                dispatcher = request.getRequestDispatcher( "/entidades/generos/excluir.jsp" );
                 
             } else if ( acao.equals( "alterar" ) ) {
                 
-                ClassificacaoEtaria classificacaoEtaria = new ClassificacaoEtaria();
+                Genero genero = new Genero();
                 
-                classificacaoEtaria.setId( Integer.parseInt( request.getParameter( "id" ) ) );
-                classificacaoEtaria.setDescricao(request.getParameter( "descricao" ) );
+                genero.setId( Integer.parseInt( request.getParameter( "id" ) ) );
+                genero.setDescricao(request.getParameter( "descricao" ) );
                 
-                dao.atualizar( classificacaoEtaria );
+                dao.atualizar( genero );
                 
-                dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/listagem.jsp" );
+                dispatcher = request.getRequestDispatcher( "/entidades/generos/listagem.jsp" );
                 
             } else if ( acao.equals( "excluir" ) ) {
                 
-                ClassificacaoEtaria classificacaoEtaria = new ClassificacaoEtaria();
+                Genero genero = new Genero();
                 
-                classificacaoEtaria.setId( Integer.parseInt( request.getParameter( "id" ) ) );
+                genero.setId( Integer.parseInt( request.getParameter( "id" ) ) );
                 
-                dao.excluir( classificacaoEtaria );
+                dao.excluir( genero );
                 
-                dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/listagem.jsp" );
+                dispatcher = request.getRequestDispatcher( "/entidades/generos/listagem.jsp" );
             
             } else if ( acao.equals( "adicionar" ) ) {
                 
-                ClassificacaoEtaria classificacaoEtaria = new ClassificacaoEtaria();
+                Genero genero = new Genero();
                 
-                classificacaoEtaria.setDescricao( request.getParameter( "descricao" ) );
+                genero.setDescricao(request.getParameter( "descricao" ) );
                 
-                dao.salvar( classificacaoEtaria );
+                dao.salvar( genero );
                 
-                dispatcher = request.getRequestDispatcher("/entidades/classificacoesEtarias/listagem.jsp");
+                dispatcher = request.getRequestDispatcher("/entidades/generos/listagem.jsp");
+                
                 
             }
             

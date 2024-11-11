@@ -14,7 +14,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Locadora DVD's</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="${cp}/css/style.css">
 
     </head>
 
@@ -22,41 +22,23 @@
         
         <header>
             
-            <a href="index.jsp"> 
-                <img src="images/dvdLogo.png" alt="" class="logo-img"> 
-            </a>
-
-
-            <div class="header-options">
-                <div>
-                    <a href="index.jsp"> Início </a>
-                </div>
-
-                <hr>
-
-                <div>
-                    <a href="entidades/dvds/listagem.jsp"> DVD's </a>
-                </div>
-
-                <hr>
-
-                <div>
-                    <a href="entidades/atores/listagem.jsp"> Atores </a>
-                </div>
-
-                <hr>
-
-                <div>
-                    <a href="entidades/classificacoesEtarias/listagem.jsp"> Classificações Etárias </a>
-                </div>
-
-                <hr>
-
-                <div>
-                    <a href="entidades/generos/listagem.jsp"> Gêneros </a>
-                </div>
-            </div>
-
+            <nav class="navbar">
+                
+                <a href="${cp}/index.jsp" class="navbar-logo">
+                    <img src="${cp}/images/dvdLogo.png" alt="" class="logo-img">
+                </a>
+                
+                <ul class="navbar-links">
+                    
+                    <li> <a href="${cp}/index.jsp">Início</a> </li>
+                    <li> <a href="${cp}/entidades/dvds/listagem.jsp">DVD's</a> </li>
+                    <li> <a href="${cp}/entidades/atores/listagem.jsp">Atores</a> </li>
+                    <li> <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp">Classificações Etárias</a> </li>
+                    <li> <a href="${cp}/entidades/generos/listagem.jsp">Gêneros</a> </li>
+                    
+                </ul>
+                
+            </nav>
 
         </header>
 
@@ -73,9 +55,9 @@
                     
                     <h3>Conheça os Atores</h3>
 
-                    <img src="images/silhueta.png" alt="">
+                    <img src="${cp}/images/silhueta.png" alt="">
 
-                    <a href="entidades/atores/listagem.jsp" class="home-item-btn" >Clique Aqui!</a>
+                    <a href="${cp}/entidades/atores/listagem.jsp" class="home-item-btn" >Clique Aqui!</a>
                     
                 </div>
 
@@ -83,9 +65,9 @@
                     
                     <h3>Conheça os DVD's</h3>
 
-                    <img src="images/dvd.png" alt="">
+                    <img src="${cp}/images/dvd.png" alt="">
 
-                    <a href="entidades/dvds/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="${cp}/entidades/dvds/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
                     
                 </div>
 
@@ -97,9 +79,9 @@
                     
                     <h3>Entenda as Classificações Etarias</h3>
 
-                    <img src="images/classificacaoEtaria.jpg" alt="">
+                    <img src="${cp}/images/classificacaoEtaria.jpg" alt="">
 
-                    <a href="entidades/classificacoesEtarias/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
                     
                 </div>
 
@@ -107,9 +89,9 @@
                     
                     <h3>Explore os Gêneros</h3>
 
-                    <img src="images/generos.png" alt="">
+                    <img src="${cp}/images/generos.png" alt="">
 
-                    <a href="entidades/generos/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="${cp}/entidades/generos/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
                     
                 </div>
 
@@ -117,8 +99,8 @@
 
         </main>
 
-        <footer>
-            <span>Victor Ramos - Instituto Federal de São Paulo @ 2024</span>
+        <footer class="footer">
+            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
         </footer>
 
     </body>
