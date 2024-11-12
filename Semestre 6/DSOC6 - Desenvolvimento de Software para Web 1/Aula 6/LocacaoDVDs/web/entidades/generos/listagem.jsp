@@ -74,13 +74,13 @@
                                 <td>${genero.descricao}</td>
 
                                 <td>
-                                    <a href="${cp}/processaGeneros?acao=prepararAlteracao&id=${genero.id}">
+                                    <a href="${cp}/processaGeneros?acao=prepararAlteracao&id=${genero.id}" class="table-options">
                                         Alterar
                                     </a>
                                 </td>
 
                                 <td>
-                                    <a href="${cp}/processaGeneros?acao=prepararExclusao&id=${genero.id}">
+                                    <a href="${cp}/processaGeneros?acao=prepararExclusao&id=${genero.id}" class="table-options">
                                         Excluir
                                     </a>
                                 </td>
@@ -95,16 +95,10 @@
             </div>
 
             <div class="div-form-options">
-
-                <a href="${cp}/entidades/generos/adicionar.jsp">Adicionar</a>
-
+                <a href="${cp}/entidades/generos/adicionar.jsp" class="button">Adicionar</a>
             </div>
 
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

@@ -52,9 +52,9 @@
                 <h1>Excluir DVD</h1>
             </div>
 
-            <div class="alterar-div-form">
+            <div class="div-form">
 
-                <form method="POST" action="${cp}/processaDvds" class="alterar-form">
+                <form method="POST" action="${cp}/processaDvds" class="form-personalizado">
 
                     <input type="hidden" name="id" value="${requestScope.dvd.id}">
                     <input type="hidden" name="acao" value="excluir">
@@ -203,18 +203,11 @@
 
             </div>
 
-            <div class="alterar-div-options">
-
-                
-                <a href="${cp}/entidades/dvds/listagem.jsp">Voltar</a>
-
+            <div class="div-form-options">
+                <a href="${cp}/entidades/dvds/listagem.jsp" class="button">Voltar</a>
             </div>
 
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

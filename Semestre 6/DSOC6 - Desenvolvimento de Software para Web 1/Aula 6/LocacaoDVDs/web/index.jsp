@@ -43,7 +43,7 @@
         </header>
 
         <main>
-
+                
             <div class="page-title">
                 <h1>Locadora de DVD's</h1>
                 <p>A Locadora com o melhor atendimento!</p>
@@ -52,23 +52,23 @@
             <div class="home-item-row">
 
                 <div class="home-item-box">
-                    
-                    <h3>Conheça os Atores</h3>
 
-                    <img src="${cp}/images/silhueta.png" alt="">
-
-                    <a href="${cp}/entidades/atores/listagem.jsp" class="home-item-btn" >Clique Aqui!</a>
-                    
-                </div>
-
-                <div class="home-item-box">
-                    
                     <h3>Conheça os DVD's</h3>
 
                     <img src="${cp}/images/dvd.png" alt="">
 
                     <a href="${cp}/entidades/dvds/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+
+                </div>
                     
+                <div class="home-item-box">
+
+                    <h3>Conheça os Atores</h3>
+
+                    <img src="${cp}/images/silhueta.png" alt="">
+
+                    <a href="${cp}/entidades/atores/listagem.jsp" class="home-item-btn" >Clique Aqui!</a>
+
                 </div>
 
             </div>
@@ -76,23 +76,23 @@
             <div class="home-item-row">
 
                 <div class="home-item-box">
-                    
-                    <h3>Entenda as Classificações Etarias</h3>
+
+                    <h3>Entenda as Classificações Etárias</h3>
 
                     <img src="${cp}/images/classificacaoEtaria.jpg" alt="">
 
                     <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
-                    
+
                 </div>
 
                 <div class="home-item-box">
-                    
+
                     <h3>Explore os Gêneros</h3>
 
                     <img src="${cp}/images/generos.png" alt="">
 
                     <a href="${cp}/entidades/generos/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
-                    
+
                 </div>
 
             </div>

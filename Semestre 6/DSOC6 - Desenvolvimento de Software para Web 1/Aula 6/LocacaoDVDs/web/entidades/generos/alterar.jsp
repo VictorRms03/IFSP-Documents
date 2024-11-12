@@ -77,7 +77,13 @@
                                 </td>
 
                                 <td>
-                                    <input type="text" name="descricao" id="descricao" value="${requestScope.genero.descricao}">
+                                    <input type="text" 
+                                            size="20" 
+                                            maxlength="40" 
+                                            name="descricao" 
+                                            id="descricao" 
+                                            value="${requestScope.genero.descricao}" 
+                                            required>
                                 </td>
                             </tr>
                             
@@ -96,17 +102,10 @@
             </div>
 
             <div class="div-form-options">
-
-                
-                <a href="${cp}/entidades/generos/listagem.jsp">Voltar</a>
-
+                <a href="${cp}/entidades/generos/listagem.jsp" class="button">Voltar</a>
             </div>
 
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

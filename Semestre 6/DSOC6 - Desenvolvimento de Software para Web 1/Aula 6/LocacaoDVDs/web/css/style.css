@@ -1,7 +1,7 @@
 /* GERAL */
 
 body {
-    font-family: Georgia, serif;
+    font-family: Arial, sans-serif;
     margin: 0;
 }
 
@@ -32,6 +32,11 @@ a {
     text-decoration: none;
 }
 
+.logo-img {
+    width: 100px;
+    height: auto;
+}
+
 .navbar-links {
     list-style: none;
     display: flex;
@@ -53,6 +58,10 @@ a {
 }
 
 /* RODAPÉ */
+
+.sticky-footer {
+    flex: 1;
+}
 
 .footer {
     background-color: #333;
@@ -123,7 +132,7 @@ a {
 
 .div-form {
 
-    margin: 0px 20%;
+    margin: 0px 15%;
 
     table {
         width: 100%;
@@ -136,7 +145,7 @@ a {
     }
       
     table th {
-        background-color: #343a40;
+        background-color: #333;
         color: #ffffff;
         padding: 12px;
         text-align: center;
@@ -157,17 +166,23 @@ a {
     table tr:last-child td {
         border-bottom: none;
     }
+    
+    .table-options {
+        font-weight: bold;
+    }
 }
 
 .div-form-options {
     display: flex;
     justify-content: center;
+    
+    margin: 20px 0px;
 }
 
 .button {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: #007bff;
+    background-color: #333;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -180,3 +195,10 @@ a {
     background-color: #0056b3;
 }
 
+/* ERRO */
+.div-form-error {
+    
+    text-align: center;
+    font-weight: bold;
+        
+}

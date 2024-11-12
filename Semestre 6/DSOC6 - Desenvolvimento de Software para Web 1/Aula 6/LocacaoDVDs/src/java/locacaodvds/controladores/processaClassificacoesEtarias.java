@@ -13,7 +13,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import locacaodvds.dao.ClassificacaoEtariaDAO;
+import locacaodvds.dao.DvdDAO;
 import locacaodvds.entidades.ClassificacaoEtaria;
+import locacaodvds.entidades.Dvd;
 
 /**
  *
@@ -64,14 +66,24 @@ public class processaClassificacoesEtarias extends HttpServlet {
                 
             } else if ( acao.equals( "alterar" ) ) {
                 
-                ClassificacaoEtaria classificacaoEtaria = new ClassificacaoEtaria();
+                if ( isDescricaoValida( request.getParameter( "descricao" ) ) ) {
+                    
+                    String errorMsg = "Descrição inserida invalida";
+                    request.setAttribute("errorMsg", errorMsg);
+                    dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/erro.jsp" );
+                    
+                } else {
                 
-                classificacaoEtaria.setId( Integer.parseInt( request.getParameter( "id" ) ) );
-                classificacaoEtaria.setDescricao(request.getParameter( "descricao" ) );
-                
-                dao.atualizar( classificacaoEtaria );
-                
-                dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/listagem.jsp" );
+                    ClassificacaoEtaria classificacaoEtaria = new ClassificacaoEtaria();
+
+                    classificacaoEtaria.setId( Integer.parseInt( request.getParameter( "id" ) ) );
+                    classificacaoEtaria.setDescricao(request.getParameter( "descricao" ) );
+
+                    dao.atualizar( classificacaoEtaria );
+
+                    dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/listagem.jsp" );
+                    
+                }
                 
             } else if ( acao.equals( "excluir" ) ) {
                 
@@ -79,19 +91,39 @@ public class processaClassificacoesEtarias extends HttpServlet {
                 
                 classificacaoEtaria.setId( Integer.parseInt( request.getParameter( "id" ) ) );
                 
-                dao.excluir( classificacaoEtaria );
+                if( isClassificacaoEtariaUtilizada( classificacaoEtaria ) ) {
+                    
+                    String errorMsg = "Classificação Etaria sendo utilizada no Cadastro de algum DVD";
+                    request.setAttribute( "errorMsg", errorMsg );
+                    dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/erro.jsp" );
+                    
+                } else {
+                    
+                    dao.excluir( classificacaoEtaria );
+                    
+                    dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/listagem.jsp" );
+                    
+                }
                 
-                dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/listagem.jsp" );
-            
             } else if ( acao.equals( "adicionar" ) ) {
                 
-                ClassificacaoEtaria classificacaoEtaria = new ClassificacaoEtaria();
+                if ( isDescricaoValida( request.getParameter( "descricao" ) ) ) {
+                    
+                    String errorMsg = "Descrição inserida invalida";
+                    request.setAttribute("errorMsg", errorMsg);
+                    dispatcher = request.getRequestDispatcher( "/entidades/classificacoesEtarias/erro.jsp" );
+                    
+                } else {
+                    
+                    ClassificacaoEtaria classificacaoEtaria = new ClassificacaoEtaria();
                 
-                classificacaoEtaria.setDescricao( request.getParameter( "descricao" ) );
-                
-                dao.salvar( classificacaoEtaria );
-                
-                dispatcher = request.getRequestDispatcher("/entidades/classificacoesEtarias/listagem.jsp");
+                    classificacaoEtaria.setDescricao( request.getParameter( "descricao" ) );
+
+                    dao.salvar( classificacaoEtaria );
+
+                    dispatcher = request.getRequestDispatcher("/entidades/classificacoesEtarias/listagem.jsp");
+                    
+                }
                 
             }
             
@@ -114,8 +146,6 @@ public class processaClassificacoesEtarias extends HttpServlet {
         if ( dispatcher != null ) {
             dispatcher.forward( request, response );
         }
-        
-        
         
     }
 
@@ -158,4 +188,40 @@ public class processaClassificacoesEtarias extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    /**
+     * 
+     * @param descricao Descrição a ser validada
+     * @return TRUE se a Descrição for válida
+     */
+    private boolean isDescricaoValida( String descricao ) {
+        
+        if ( descricao.length() > 0 && descricao.length() < 41 ) {
+            return true;
+        }
+        
+        return false;
+        
+    }
+    
+    /**
+     * 
+     * @param classificacaoEtaria Classificação a ser verificada
+     * @return TRUE se a classificaçãoEtaria estiver sendo utilizada por algum DVD
+     * @throws SQLException 
+     */
+    private boolean isClassificacaoEtariaUtilizada( ClassificacaoEtaria classificacaoEtaria ) throws SQLException {
+        
+        DvdDAO dvdDAO = new DvdDAO();
+
+        for ( Dvd dvd : dvdDAO.listarTodos() ) {
+
+            if ( dvd.getClassificacaoEtaria().getId() == classificacaoEtaria.getId() ) 
+            { return true; }
+
+        }
+        
+        return false;
+        
+    }
+    
 }

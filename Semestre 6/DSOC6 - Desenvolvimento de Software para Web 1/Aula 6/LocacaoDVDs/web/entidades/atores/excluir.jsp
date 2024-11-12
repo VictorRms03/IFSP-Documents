@@ -70,14 +70,20 @@
                                     <input type="submit" value="Confirmar Exclusão">
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td> 
                                     <label for="nome">Nome: </label>
                                 </td>
 
                                 <td>
-                                    <input type="text" name="nome" id="nome" value="${requestScope.ator.nome}" disabled>
+                                    <input type="text" 
+                                            size="20"
+                                            maxlength="45"
+                                            name="nome"
+                                            id="nome"
+                                            value="${requestScope.ator.nome}"
+                                            disabled>
                                 </td>
                             </tr>
 
@@ -87,7 +93,13 @@
                                 </td>
 
                                 <td>
-                                    <input type="text" name="sobrenome" id="sobrenome" value="${requestScope.ator.sobrenome}" disabled>
+                                    <input type="text"
+                                            size="20"
+                                            maxlength="45"
+                                            name="sobrenome"
+                                            id="sobrenome"
+                                            value="${requestScope.ator.sobrenome}"
+                                            disabled>
                                 </td>
                             </tr>
 
@@ -97,10 +109,15 @@
                                 </td>
 
                                 <td>
-                                    <input type="date" name="dataEstreia" id="dataEstreia" value="${requestScope.ator.dataEstreia}" disabled>
+                                    <input type="date" 
+                                            size="8" 
+                                            name="dataEstreia" 
+                                            id="dataEstreia" 
+                                            value="${requestScope.ator.dataEstreia}" 
+                                            disabled>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td colspan="2">
                                     <input type="submit" value="Confirmar Exclusão">
@@ -116,14 +133,10 @@
             </div>
 
             <div class="div-form-options">
-                <a href="${cp}/entidades/atores/listagem.jsp">Voltar</a>
+                <a href="${cp}/entidades/atores/listagem.jsp"  class="button">Voltar</a>
             </div>
-
+        
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

@@ -43,7 +43,7 @@
         </header>
 
         <main>
-
+                
             <div class="page-title">
                 <h1>Adicionar Classificação Etária</h1>
             </div>
@@ -69,17 +69,23 @@
                                     <input type="submit" value="Confirmar Adição">
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td> 
                                     <label for="nome">Descrição: </label>
                                 </td>
 
                                 <td>
-                                    <input type="text" name="descricao" id="descricao" placeholder="Descrição">
+                                    <input type="text" 
+                                            size="20"
+                                            maxlength="40" 
+                                            name="descricao" 
+                                            id="descricao" 
+                                            placeholder="Descrição"
+                                            required>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td colspan="2">
                                     <input type="submit" value="Confirmar Adição">
@@ -95,17 +101,10 @@
             </div>
 
             <div class="div-form-options">
-
-                
-                <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp">Voltar</a>
-
+                <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp" class="button">Voltar</a>
             </div>
-
+        
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

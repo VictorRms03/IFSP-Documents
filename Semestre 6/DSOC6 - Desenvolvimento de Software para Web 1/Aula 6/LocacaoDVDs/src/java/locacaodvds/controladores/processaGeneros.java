@@ -12,7 +12,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import locacaodvds.dao.DvdDAO;
 import locacaodvds.dao.GeneroDAO;
+import locacaodvds.entidades.Dvd;
 import locacaodvds.entidades.Genero;
 
 /**
@@ -64,14 +66,24 @@ public class processaGeneros extends HttpServlet {
                 
             } else if ( acao.equals( "alterar" ) ) {
                 
-                Genero genero = new Genero();
+                if ( isDescricaoValida( request.getParameter( "descricao" ) ) ) {
+                    
+                    String errorMsg = "Descrição inserida invalida";
+                    request.setAttribute("errorMsg", errorMsg);
+                    dispatcher = request.getRequestDispatcher( "/entidades/generos/erro.jsp" );
+                    
+                } else {
+                    
+                    Genero genero = new Genero();
+
+                    genero.setId( Integer.parseInt( request.getParameter( "id" ) ) );
+                    genero.setDescricao(request.getParameter( "descricao" ) );
+
+                    dao.atualizar( genero );
+
+                    dispatcher = request.getRequestDispatcher( "/entidades/generos/listagem.jsp" );
                 
-                genero.setId( Integer.parseInt( request.getParameter( "id" ) ) );
-                genero.setDescricao(request.getParameter( "descricao" ) );
-                
-                dao.atualizar( genero );
-                
-                dispatcher = request.getRequestDispatcher( "/entidades/generos/listagem.jsp" );
+                }
                 
             } else if ( acao.equals( "excluir" ) ) {
                 
@@ -79,20 +91,39 @@ public class processaGeneros extends HttpServlet {
                 
                 genero.setId( Integer.parseInt( request.getParameter( "id" ) ) );
                 
-                dao.excluir( genero );
+                if ( isGeneroUtilizado( genero ) ) {
+                    
+                    String errorMsg = "Gênero sendo utilizado no Cadastro de algum DVD";
+                    request.setAttribute("errorMsg", errorMsg);
+                    dispatcher = request.getRequestDispatcher( "/entidades/generos/erro.jsp" );
+                    
+                } else {
+                    
+                    dao.excluir( genero );
                 
-                dispatcher = request.getRequestDispatcher( "/entidades/generos/listagem.jsp" );
-            
+                    dispatcher = request.getRequestDispatcher( "/entidades/generos/listagem.jsp" );
+                    
+                }
+                
             } else if ( acao.equals( "adicionar" ) ) {
                 
-                Genero genero = new Genero();
-                
-                genero.setDescricao(request.getParameter( "descricao" ) );
-                
-                dao.salvar( genero );
-                
-                dispatcher = request.getRequestDispatcher("/entidades/generos/listagem.jsp");
-                
+                if ( isDescricaoValida( request.getParameter( "descricao" ) ) ) {
+                    
+                    String errorMsg = "Descrição inserida invalida";
+                    request.setAttribute("errorMsg", errorMsg);
+                    dispatcher = request.getRequestDispatcher( "/entidades/generos/erro.jsp" );
+                    
+                } else {
+                    
+                    Genero genero = new Genero();
+
+                    genero.setDescricao(request.getParameter( "descricao" ) );
+
+                    dao.salvar( genero );
+
+                    dispatcher = request.getRequestDispatcher("/entidades/generos/listagem.jsp");
+                    
+                }
                 
             }
             
@@ -115,8 +146,6 @@ public class processaGeneros extends HttpServlet {
         if ( dispatcher != null ) {
             dispatcher.forward( request, response );
         }
-        
-        
         
     }
 
@@ -159,4 +188,39 @@ public class processaGeneros extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    /**
+     * 
+     * @param descricao Descrição a ser validada
+     * @return TRUE se a Descrição for válida
+     */
+    private boolean isDescricaoValida( String descricao ) {
+        
+        if ( descricao.length() > 0 && descricao.length() < 41 ) {
+            return true;
+        }
+        
+        return false;
+        
+    }
+    
+    /**
+     * 
+     * @param genero Genero a ser verificado
+     * @return TRUE se o genero estiver sendo utilizado por algum DVD
+     * @throws SQLException 
+     */
+    private boolean isGeneroUtilizado( Genero genero ) throws SQLException {
+        
+        DvdDAO dvdDAO = new DvdDAO();
+
+        for ( Dvd dvd : dvdDAO.listarTodos() ) {
+
+            if ( dvd.getGenero().getId() == genero.getId() ) 
+            { return true; }
+
+        }
+        
+        return false;
+        
+    }
 }

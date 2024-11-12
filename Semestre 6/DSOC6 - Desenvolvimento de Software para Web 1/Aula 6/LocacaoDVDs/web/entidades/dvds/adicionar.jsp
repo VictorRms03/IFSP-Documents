@@ -73,14 +73,20 @@
                                     <input type="submit" value="Confirmar Adição">
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td> 
                                     <label for="titulo">Título: </label>
                                 </td>
 
                                 <td>
-                                    <input type="text" name="titulo" id="titulo" placeholder="Título">
+                                    <input type="text" 
+                                            size="20" 
+                                            maxlength="100" 
+                                            name="titulo" 
+                                            id="titulo" 
+                                            placeholder="Título" 
+                                            required>
                                 </td>
                             </tr>
 
@@ -90,7 +96,12 @@
                                 </td>
 
                                 <td>
-                                    <input type="text" name="anoLancamento" id="anoLancamento" placeholder="Ano de Lançamento">
+                                    <input type="number" 
+                                            size="8" 
+                                            name="anoLancamento" 
+                                            id="anoLancamento" 
+                                            placeholder="Ano de Lançamento"
+                                            required>
                                 </td>
                             </tr>
 
@@ -100,20 +111,30 @@
                                 </td>
 
                                 <td>
-                                    <input type="date" name="dataLancamento" id="dataLancamento">
+                                    <input type="date" 
+                                            size="8" 
+                                            placeholder="dd/mm/yyyy" 
+                                            name="dataLancamento" 
+                                            id="dataLancamento" 
+                                            required>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td> 
                                     <label for="duracaoMinutos">Duração (Min): </label>
                                 </td>
 
                                 <td>
-                                    <input type="number" name="duracaoMinutos" id="duracaoMinutos">
+                                    <input type="number" 
+                                            size="8" 
+                                            name="duracaoMinutos" 
+                                            id="duracaoMinutos" 
+                                            placeholder="Duração em Minutos" 
+                                            required>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td> 
                                     <label for="idAtorPrincipal">Ator Principal: </label>
@@ -122,21 +143,21 @@
                                 <td>
 
                                     <select name="idAtorPrincipal" required>
-                                        
+
                                       <c:forEach items="${servicosAtores.todos}" var="ator">
-                                          
+
                                         <option value="${ator.id}">
                                           ${ator.nome} ${ator.sobrenome}
                                         </option>
-                                        
+
                                       </c:forEach>
-                                        
+
                                     </select>
 
                               </td>
-                              
+
                             </tr>
-                            
+
                             <tr>
                                 <td> 
                                     <label for="idAtorCoadjuvante">Ator Coadjuvante: </label>
@@ -145,23 +166,23 @@
                                 <td>
 
                                     <select name="idAtorCoadjuvante" required>
-                                        
+
                                       <c:forEach items="${servicosAtores.todos}" var="ator">
-                                          
+
                                         <option value="${ator.id}">
                                           ${ator.nome} ${ator.sobrenome}
                                         </option>
-                                        
+
                                       </c:forEach>
-                                        
+
                                     </select>
 
                               </td>
-                              
+
                             </tr>
-                            
+
                             <tr>
-                                
+
                                 <td> 
                                     <label for="idClassificacaoEtaria">Classificação Etária: </label>
                                 </td>
@@ -169,23 +190,23 @@
                                 <td>
 
                                     <select name="idClassificacaoEtaria" required>
-                                        
+
                                       <c:forEach items="${servicosClassificacoesEtarias.todos}" var="classificacaoEtaria">
-                                          
+
                                         <option value="${classificacaoEtaria.id}">
                                           ${classificacaoEtaria.descricao}
                                         </option>
-                                        
+
                                       </c:forEach>
-                                        
+
                                     </select>
 
                               </td>
-                              
+
                             </tr>
-                            
+
                             <tr>
-                                
+
                                 <td> 
                                     <label for="idGenero">Gênero: </label>
                                 </td>
@@ -193,21 +214,21 @@
                                 <td>
 
                                     <select name="idGenero" required>
-                                        
+
                                       <c:forEach items="${servicosGeneros.todos}" var="genero">
-                                          
+
                                         <option value="${genero.id}">
                                           ${genero.descricao}
                                         </option>
-                                        
+
                                       </c:forEach>
-                                        
+
                                     </select>
 
                               </td>
-                              
+
                             </tr>
-                            
+
                             <tr>
                                 <td colspan="2">
                                     <input type="submit" value="Confirmar Adição">
@@ -223,14 +244,10 @@
             </div>
 
             <div class="div-form-options">
-                <a href="${cp}/entidades/dvds/listagem.jsp">Voltar</a>
+                <a href="${cp}/entidades/dvds/listagem.jsp" class="button">Voltar</a>
             </div>
-
+                
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

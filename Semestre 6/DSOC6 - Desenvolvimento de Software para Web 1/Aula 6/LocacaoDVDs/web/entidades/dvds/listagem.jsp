@@ -49,7 +49,7 @@
                 <p>Veja os melhores DVD's para você alugar!</p>
             </div>
 
-            <div class="listagem-div-table">
+            <div class="div-form">
 
                 <table>
 
@@ -88,13 +88,13 @@
                                 <td>${dvd.genero.descricao}</td>
 
                                 <td>
-                                    <a href="${cp}/processaDvds?acao=prepararAlteracao&id=${dvd.id}">
+                                    <a href="${cp}/processaDvds?acao=prepararAlteracao&id=${dvd.id}" class="table-options">
                                         Alterar
                                     </a>
                                 </td>
 
                                 <td>
-                                    <a href="${cp}/processaDvds?acao=prepararExclusao&id=${dvd.id}">
+                                    <a href="${cp}/processaDvds?acao=prepararExclusao&id=${dvd.id}" class="table-options">
                                         Excluir
                                     </a>
                                 </td>
@@ -108,17 +108,11 @@
 
             </div>
 
-            <div class="listagem-div-options">
-
-                <a href="${cp}/entidades/dvds/adicionar.jsp">Adicionar</a>
-
+            <div class="div-form-options">
+                <a href="${cp}/entidades/dvds/adicionar.jsp" class="button">Adicionar</a>
             </div>
 
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

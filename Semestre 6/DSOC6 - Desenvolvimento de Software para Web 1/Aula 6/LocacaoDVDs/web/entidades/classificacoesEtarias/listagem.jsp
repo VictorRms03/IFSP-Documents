@@ -43,7 +43,7 @@
         </header>
 
         <main>
-
+                
             <div class="page-title">
                 <h1>Classificações Etárias</h1>
                 <p>Entenda as Classificações Etárias</p>
@@ -65,7 +65,7 @@
                     <tbody>
 
                         <jsp:useBean id="servicos" scope="page" class="locacaodvds.servicos.ClassificacaoEtariaServices"/>
-                
+
                         <c:forEach items="${servicos.todos}" var="classificacaoEtaria">
 
                             <tr>
@@ -74,13 +74,13 @@
                                 <td>${classificacaoEtaria.descricao}</td>
 
                                 <td>
-                                    <a href="${cp}/processaClassificacoesEtarias?acao=prepararAlteracao&id=${classificacaoEtaria.id}">
+                                    <a href="${cp}/processaClassificacoesEtarias?acao=prepararAlteracao&id=${classificacaoEtaria.id}" class="table-options">
                                         Alterar
                                     </a>
                                 </td>
 
                                 <td>
-                                    <a href="${cp}/processaClassificacoesEtarias?acao=prepararExclusao&id=${classificacaoEtaria.id}">
+                                    <a href="${cp}/processaClassificacoesEtarias?acao=prepararExclusao&id=${classificacaoEtaria.id}" class="table-options">
                                         Excluir
                                     </a>
                                 </td>
@@ -97,12 +97,8 @@
             <div class="div-form-options">
                 <a href="${cp}/entidades/classificacoesEtarias/adicionar.jsp" class="button">Adicionar</a>
             </div>
-
+        
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

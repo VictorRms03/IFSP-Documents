@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +44,7 @@
         </header>
 
         <main>
-
+                
             <div class="page-title">
                 <h1>Atores</h1>
                 <p>Conheça os atores mais famosos para se ver na telinha!</p>
@@ -67,7 +68,7 @@
                     <tbody>
 
                         <jsp:useBean id="servicos" scope="page" class="locacaodvds.servicos.AtoresServices"/>
-                
+
                         <c:forEach items="${servicos.todos}" var="ator">
 
                             <tr>
@@ -75,16 +76,16 @@
                                 <td>${ator.id}</td>
                                 <td>${ator.nome}</td>
                                 <td>${ator.sobrenome}</td>
-                                <td>${ator.dataEstreia}</td>
+                                <td><fmt:formatDate pattern="dd-MM-yyyy" value="${ator.dataEstreia}"/></td>
 
                                 <td>
-                                    <a href="${cp}/processaAtores?acao=prepararAlteracao&id=${ator.id}">
+                                    <a href="${cp}/processaAtores?acao=prepararAlteracao&id=${ator.id}" class="table-options">
                                         Alterar
                                     </a>
                                 </td>
 
                                 <td>
-                                    <a href="${cp}/processaAtores?acao=prepararExclusao&id=${ator.id}">
+                                    <a href="${cp}/processaAtores?acao=prepararExclusao&id=${ator.id}" class="table-options">
                                         Excluir
                                     </a>
                                 </td>
@@ -101,12 +102,8 @@
             <div class="div-form-options">
                 <a href="${cp}/entidades/atores/adicionar.jsp" class="button">Adicionar</a>
             </div>
-
+        
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

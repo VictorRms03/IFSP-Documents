@@ -70,17 +70,23 @@
                                     <input type="submit" value="Confirmar Exclusão">
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td> 
                                     <label for="nome">Descrição: </label>
                                 </td>
 
                                 <td>
-                                    <input type="text" name="descricao" id="descricao" value="${requestScope.classificacaoEtaria.descricao}" disabled>
+                                    <input type="text" 
+                                           size="20" 
+                                           maxlength="40" 
+                                           name="descricao" 
+                                           id="descricao" 
+                                           value="${requestScope.classificacaoEtaria.descricao}" 
+                                           disabled>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td colspan="2">
                                     <input type="submit" value="Confirmar Exclusão">
@@ -96,14 +102,10 @@
             </div>
 
             <div class="div-form-options">
-                <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp">Voltar</a>
+                <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp" class="button">Voltar</a>
             </div>
-
+                
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

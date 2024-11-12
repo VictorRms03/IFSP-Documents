@@ -81,7 +81,13 @@
                                 </td>
 
                                 <td>
-                                    <input type="text" name="titulo" id="titulo" value="${requestScope.dvd.titulo}">
+                                    <input type="text" 
+                                            size="20" 
+                                            maxlength="100" 
+                                            name="titulo" 
+                                            id="titulo" 
+                                            value="${requestScope.dvd.titulo}"
+                                            required>
                                 </td>
                             </tr>
 
@@ -91,7 +97,12 @@
                                 </td>
 
                                 <td>
-                                    <input type="text" name="anoLancamento" id="anoLancamento" value="${requestScope.dvd.anoLancamento}">
+                                    <input type="number" 
+                                            size="8" 
+                                            name="anoLancamento" 
+                                            id="anoLancamento" 
+                                            value="${requestScope.dvd.anoLancamento}" 
+                                            required>
                                 </td>
                             </tr>
 
@@ -101,7 +112,12 @@
                                 </td>
 
                                 <td>
-                                    <input type="date" name="dataLancamento" id="dataLancamento" value="${requestScope.dvd.dataLancamento}">
+                                    <input type="date" 
+                                            size="8" 
+                                            name="dataLancamento" 
+                                            id="dataLancamento" 
+                                            value="${requestScope.dvd.dataLancamento}" 
+                                            required>
                                 </td>
                             </tr>
                             
@@ -111,7 +127,12 @@
                                 </td>
 
                                 <td>
-                                    <input type="number" name="duracaoMinutos" id="duracaoMinutos" value="${requestScope.dvd.duracaoMinutos}">
+                                    <input type="number" 
+                                            size="8" 
+                                            name="duracaoMinutos" 
+                                            id="duracaoMinutos" 
+                                            value="${requestScope.dvd.duracaoMinutos}" 
+                                            required>
                                 </td>
                             </tr>
                             
@@ -268,14 +289,10 @@
             </div>
 
             <div class="div-form-options">
-                <a href="${cp}/entidades/dvds/listagem.jsp">Voltar</a>
+                <a href="${cp}/entidades/dvds/listagem.jsp" class="button">Voltar</a>
             </div>
 
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 

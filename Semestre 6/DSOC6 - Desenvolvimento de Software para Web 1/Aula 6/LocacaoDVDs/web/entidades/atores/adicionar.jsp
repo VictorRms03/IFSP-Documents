@@ -43,7 +43,7 @@
         </header>
 
         <main>
-
+                
             <div class="page-title">
                 <h1>Adicionar Ator</h1>
             </div>
@@ -69,14 +69,20 @@
                                     <input type="submit" value="Confirmar Adição">
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td> 
                                     <label for="nome">Nome: </label>
                                 </td>
 
                                 <td>
-                                    <input type="text" name="nome" id="nome" placeholder="Nome">
+                                    <input type="text"
+                                            size="20"
+                                            maxlength="45"
+                                            name="nome"
+                                            id="nome"
+                                            placeholder="Nome"
+                                            required>
                                 </td>
                             </tr>
 
@@ -86,7 +92,13 @@
                                 </td>
 
                                 <td>
-                                    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome">
+                                    <input type="text"
+                                            size="20"
+                                            maxlength="45"
+                                            name="sobrenome"
+                                            id="sobrenome"
+                                            placeholder="Sobrenome"
+                                            required>
                                 </td>
                             </tr>
 
@@ -96,10 +108,15 @@
                                 </td>
 
                                 <td>
-                                    <input type="date" name="dataEstreia" id="dataEstreia">
+                                    <input type="date"
+                                            size="8"
+                                            placeholder="dd/mm/yyyy"
+                                            name="dataEstreia"
+                                            id="dataEstreia"
+                                            required>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td colspan="2">
                                     <input type="submit" value="Confirmar Adição">
@@ -117,12 +134,8 @@
             <div class="div-form-options">
                 <a href="${cp}/entidades/atores/listagem.jsp" class="button">Voltar</a>
             </div>
-
+                
         </main>
-
-        <footer class="footer">
-            <p class="footer-copyright">Victor Ramos - Instituto Federal de São Paulo @ 2024</p>
-        </footer>
 
     </body>
 
