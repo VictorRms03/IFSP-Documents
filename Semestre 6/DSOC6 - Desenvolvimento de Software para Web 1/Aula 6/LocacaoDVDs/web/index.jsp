@@ -57,7 +57,7 @@
 
                     <img src="${cp}/images/dvd.png" alt="">
 
-                    <a href="${cp}/entidades/dvds/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="${cp}/entidades/dvds/listagem.jsp" class="home-item-btn button">Clique Aqui!</a>
 
                 </div>
                     
@@ -67,7 +67,7 @@
 
                     <img src="${cp}/images/silhueta.png" alt="">
 
-                    <a href="${cp}/entidades/atores/listagem.jsp" class="home-item-btn" >Clique Aqui!</a>
+                    <a href="${cp}/entidades/atores/listagem.jsp" class="home-item-btn button" >Clique Aqui!</a>
 
                 </div>
 
@@ -81,7 +81,7 @@
 
                     <img src="${cp}/images/classificacaoEtaria.jpg" alt="">
 
-                    <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="${cp}/entidades/classificacoesEtarias/listagem.jsp" class="home-item-btn button">Clique Aqui!</a>
 
                 </div>
 
@@ -91,7 +91,7 @@
 
                     <img src="${cp}/images/generos.png" alt="">
 
-                    <a href="${cp}/entidades/generos/listagem.jsp" class="home-item-btn">Clique Aqui!</a>
+                    <a href="${cp}/entidades/generos/listagem.jsp" class="home-item-btn button">Clique Aqui!</a>
 
                 </div>
 

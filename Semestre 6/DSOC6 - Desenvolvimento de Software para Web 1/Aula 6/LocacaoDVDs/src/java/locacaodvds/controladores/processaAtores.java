@@ -17,6 +17,8 @@ import jakarta.servlet.RequestDispatcher;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.lang.NullPointerException;
 import locacaodvds.dao.DvdDAO;
 import locacaodvds.entidades.Dvd;
 
@@ -233,8 +235,9 @@ public class processaAtores extends HttpServlet {
         for ( Dvd dvd : dvdDAO.listarTodos() ) {
 
             if ( dvd.getAtorPrincipal().getId() == ator.getId() || 
-                dvd.getAtorCoadjuvante().getId() == ator.getId() ) 
-            { return true; }
+                dvd.getAtorCoadjuvante().getId() == ator.getId() ) { 
+                return true; 
+            }
 
         }
         
@@ -245,7 +248,7 @@ public class processaAtores extends HttpServlet {
     /**
      * 
      * @param nome Nome ou Sobrenome a ser validado
-     * @return TRUE se o nome/sobrenome for válido
+     * @return TRUE se o nome/sobrenome for válido ( Nome de tamanho entre 1 e 45 )
      * @throws SQLException 
      */
     private boolean isNomeValido( String nome ) {
@@ -260,50 +263,17 @@ public class processaAtores extends HttpServlet {
     
     /**
      * 
-     * @param data é a data a ser validada
-     * @return TRUE se a data é válida
+     * @param data Data a ser Validada
+     * @return TRUE se a Data for válida ( For uma string que pode ser transformada em um número que pode ser transformada em uma Data )
      */
     private boolean isDataValida( String data ) {
         
-        //Verificando se a String segue o tamanho certo
-        if ( data.length() != 10 ) { return false; }
-        
-        //Verificando se os Caracteres que deveriam ser '-' realmente são
-        if ( data.charAt(4) != '-' || data.charAt(7) != '-' ) { return false; }
-        
-        //Verificando se os Caracteres que deveriam ser digitos realmente são
-        if ( !Character.isDigit( data.charAt(0) ) || 
-                !Character.isDigit( data.charAt(1) ) || 
-                !Character.isDigit( data.charAt(2) ) ||
-                !Character.isDigit( data.charAt(3) ) || 
-                !Character.isDigit( data.charAt(5) ) || 
-                !Character.isDigit( data.charAt(6) ) || 
-                !Character.isDigit( data.charAt(8) ) || 
-                !Character.isDigit( data.charAt(9) ) )
-        { return false; }
-        
-        //Verificando se o mês é valido
-        int mes = Integer.parseInt( data.substring(5, 7) );
-        
-        if ( mes > 12 || mes < 1 ) { return false; }
-        
-        //Verificando se o dia é valido
-        int dia = Integer.parseInt( data.substring(8, 10) );
-        
-        if (dia < 1){ return false; }
-        
-        if ( mes == 1 || mes == 3 || mes == 5 || mes == 7 
-                || mes == 8 || mes == 10 || mes == 12 ) 
-        {
-            if ( dia > 31 ) { return false;}
-        }
-        
-        if ( mes == 4 || mes == 6 || mes == 9 || mes == 11 ){
-            if ( dia > 30 ) { return false;}
-        }
-        
-        if ( mes == 2 ) {
-            if (dia > 29) { return false;}
+        try {
+            
+            Date dataDate = Date.valueOf( LocalDate.parse( data , DateTimeFormatter.ofPattern( "yyyy-MM-dd" ) ) );
+            
+        } catch ( DateTimeParseException | NullPointerException e ) {
+            return false;
         }
         
         return true;

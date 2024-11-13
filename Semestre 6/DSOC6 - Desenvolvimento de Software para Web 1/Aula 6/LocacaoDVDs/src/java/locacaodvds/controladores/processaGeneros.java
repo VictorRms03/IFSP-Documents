@@ -66,7 +66,7 @@ public class processaGeneros extends HttpServlet {
                 
             } else if ( acao.equals( "alterar" ) ) {
                 
-                if ( isDescricaoValida( request.getParameter( "descricao" ) ) ) {
+                if ( !isDescricaoValida( request.getParameter( "descricao" ) ) ) {
                     
                     String errorMsg = "Descrição inserida invalida";
                     request.setAttribute("errorMsg", errorMsg);
@@ -107,7 +107,7 @@ public class processaGeneros extends HttpServlet {
                 
             } else if ( acao.equals( "adicionar" ) ) {
                 
-                if ( isDescricaoValida( request.getParameter( "descricao" ) ) ) {
+                if ( !isDescricaoValida( request.getParameter( "descricao" ) ) ) {
                     
                     String errorMsg = "Descrição inserida invalida";
                     request.setAttribute("errorMsg", errorMsg);
@@ -191,7 +191,7 @@ public class processaGeneros extends HttpServlet {
     /**
      * 
      * @param descricao Descrição a ser validada
-     * @return TRUE se a Descrição for válida
+     * @return TRUE se a Descrição for válida ( Uma String de tamanho entre 1 e 40 )
      */
     private boolean isDescricaoValida( String descricao ) {
         
@@ -215,8 +215,9 @@ public class processaGeneros extends HttpServlet {
 
         for ( Dvd dvd : dvdDAO.listarTodos() ) {
 
-            if ( dvd.getGenero().getId() == genero.getId() ) 
-            { return true; }
+            if ( dvd.getGenero().getId() == genero.getId() ) { 
+                return true;
+            }
 
         }
         
