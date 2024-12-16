@@ -1,0 +1,59 @@
+ROTEADOR A:
+
+Router #enable
+Router #configure terminal
+Router(config)#hostname A
+A(config)#ipv6 unicast-routing
+A(config)#ipv6 router rip 1
+A(config)#interface g0/0
+A(config-if)#ipv6 address 6191:DB8:0:A::1
+A(config-if)#no shutdown
+A(config-if)#ipv6 rip 1 enable
+A(config-if)#interface g0/1
+A(config-if)#ipv6 address 6191:DB8:0:B::1
+A(config-if)#no shutdown
+A(config-if)#ipv6 rip 1 enable
+A(config-if)#interface g0/2
+A(config-if)#ipv6 address 6191:DB8:0:C::1
+A(config-if)#no shutdown
+A(config-if)#ipv6 rip 1 enable
+
+ROTEADOR B:
+
+Router #enable
+Router #configure terminal
+Router(config)#hostname B
+B(config)#ipv6 unicast-routing
+B(config)#ipv6 router rip 1
+B(config)#interface g0/0
+B(config-if)#ipv6 address 6191:DB8:0:E::1
+B(config-if)#no shutdown
+B(config-if)#ipv6 rip 1 enable
+B(config-if)#interface g0/1
+B(config-if)#ipv6 address 6191:DB8:0:B::2
+B(config-if)#no shutdown
+B(config-if)#ipv6 rip 1 enable
+B(config-if)#interface g0/2
+B(config-if)#ipv6 address 6191:DB8:0:D::1
+B(config-if)#no shutdown
+B(config-if)#ipv6 rip 1 enable
+
+ROTEADOR C:
+
+Router #enable
+Router #configure terminal
+Router(config)#hostname C
+C(config)#ipv6 unicast-routing
+C(config)#ipv6 router rip 1
+C(config)#interface g0/0
+C(config-if)#ipv6 address 6191:DB8:0:F::1
+C(config-if)#no shutdown
+C(config-if)#ipv6 rip 1 enable
+C(config-if)#interface g0/1
+C(config-if)#ipv6 address 6191:DB8:0:C::2
+C(config-if)#no shutdown
+C(config-if)#ipv6 rip 1 enable
+C(config-if)#interface g0/2
+C(config-if)#ipv6 address 6191:DB8:0:D::2
+C(config-if)#no shutdown
+C(config-if)#ipv6 rip 1 enable
